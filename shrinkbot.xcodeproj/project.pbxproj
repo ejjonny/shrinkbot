@@ -99,10 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				CAE09B0123458E8600370FAD /* AppResources */,
-				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				CAE09B4A234593A900370FAD /* Views */,
 				CAE09B47234592F300370FAD /* ModelControllers */,
-				CAE09AF823458CF500370FAD /* EntryModal.swift */,
-				CAE09AF62345873100370FAD /* EntryButton.swift */,
 				CAE09AFE23458E4A00370FAD /* Managers */,
 				CAE09B0623458EBB00370FAD /* Utilities */,
 				CAE09B1723458ED800370FAD /* Models */,
@@ -184,6 +182,16 @@
 				CAE09B42234592EE00370FAD /* ReminderController.swift */,
 			);
 			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		CAE09B4A234593A900370FAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				CAE09AF823458CF500370FAD /* EntryModal.swift */,
+				CAE09AF62345873100370FAD /* EntryButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

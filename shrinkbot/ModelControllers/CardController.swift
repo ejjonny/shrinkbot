@@ -8,24 +8,24 @@
 
 import Foundation
 import CoreData
+import Combine
 
-
-class CardController {
+class CardController: ObservableObject {
 	
 	var entryDateStyle: EntryDateStyles = .day
 	
 	// Singleton
 	static var shared = CardController()
 	
-	var cards: [Card] = []
+	@Published var cards: [Card] = []
+	@Published var activeCardEntries: [Entry] = []
+	@Published var activeCard: Card?
 	
-	var activeCardEntries: [Entry] {
-		guard let entries = activeCard.entries?.array as? [Entry] else { print("There was an error with OrderedSet to Array conversion") ; return []}
-		return entries
+	func refreshActiveCard() {
+		activeCard = findActiveCard()
 	}
 	
-	var activeCard: Card {
-		
+	func findActiveCard() -> Card {
 		let activeArray = cards.filter{ $0.isActive == true }
 		
 		// Make sure datasource has cards, if not make a default card.
@@ -35,7 +35,7 @@ class CardController {
 			createFactorType(withName: "Exercised", onCard: card)
 			return card
 		}
-
+		
 		if activeArray.count > 1 || activeArray.count == 0 {
 			// Deactivate all & set last to active and return it if there are more than one active cards.
 			if activeArray.count == 0 {
@@ -65,7 +65,7 @@ class CardController {
 	}
 	
 	var activeCardFactorTypes: [FactorType] {
-		guard let array = activeCard.factorTypes?.array as? [FactorType] else { print("Unable to cast set as factor types."); return []}
+		guard let array = activeCard?.factorTypes?.array as? [FactorType] else { print("Unable to cast set as factor types."); return []}
 		return array
 	}
 	
@@ -74,20 +74,22 @@ class CardController {
 		let card = Card(name: name)
 		self.setActive(card: card)
 		CoreDataManager.saveToPersistentStore()
+		refreshActiveCard()
 		return card
 	}
 	
 	func renameActiveCard(withName name: String) {
-		self.activeCard.name = name
+		self.activeCard?.name = name
 		CoreDataManager.saveToPersistentStore()
+		refreshActiveCard()
 	}
 	
 	func deleteActiveCard(completion: ((Bool) -> Void)?) {
-		CoreDataStack.context.delete(self.activeCard)
+		guard let card = activeCard else { completion?(false) ; return }
+		CoreDataStack.context.delete(card)
 		CoreDataManager.saveToPersistentStore()
-		if let completion = completion {
-			completion(true)
-		}
+		refreshActiveCard()
+		completion?(true)
 	}
 	
 	func setActive(card: Card) {
@@ -99,13 +101,14 @@ class CardController {
 		}
 		card.isActive = true
 		CoreDataManager.saveToPersistentStore()
+		refreshActiveCard()
 	}
 	
-	// MARK: - Factor control
+	// MARK: - FactorType control
 	func createFactorType(withName name: String, onCard card: Card? = nil) {
-		guard let factorTypeCount = activeCard.factorTypes?.count else { print("Card does not have any factor types."); return }
+		guard let card = activeCard, let factorTypeCount = card.factorTypes?.count else { print("Card does not have any factor types."); return }
 		if factorTypeCount < 6 {
-			FactorType(name: name, card: card ?? activeCard)
+			FactorType(name: name, card: card)
 		} else {
 			print("ERROR: Tried to save a factor when all factors on active card were full. Factor was not saved.")
 		}
@@ -128,13 +131,14 @@ class CardController {
 		CoreDataManager.saveToPersistentStore()
 	}
 	
-	// MARK: - Entry control
+	// MARK: - FactorMark Control
 	func getMarks(entry: Entry) -> [FactorMark] {
 		guard let array = entry.factorMarks?.array else { print("Unable to get mark objects from entry") ; return [] }
 		let marks = array.compactMap{ $0 as? FactorMark }
 		return marks
 	}
 	
+	// MARK: - Entry Control
 	/// Should be used for getting the last day / week / month / year of entry statistics
 	func entriesWith(graphViewStyle: GraphRangeOptions) -> [EntryStats] {
 		var stats: [EntryStats] = []
@@ -215,7 +219,7 @@ class CardController {
 	/// For getting entries grouped by an interval relative to current date
 	/// Ex. Last 24 hours for example would need to be grouped relative to current date so that grouping at 12:01am will still include a full day rather than just the calendar day that started at 12am
 	func entriesGroupedByInterval(dateStyle: EntryDateStyles) -> [[Entry]] {
-		guard let entrySet = activeCard.entries else { return [[]] }
+		guard let entrySet = activeCard?.entries else { return [[]] }
 		let entries = entrySet.compactMap{ $0 as? Entry}
 		var grouped: [Date :[Entry]] = [:]
 		switch dateStyle {
@@ -287,7 +291,7 @@ class CardController {
 	func getEntries(entries: [Entry] = [], groupedBy dateStyle: EntryDateStyles) -> [[Entry]] {
 		var input = entries
 		if entries.isEmpty {
-			guard let cardEntries = activeCard.entries else { return [[]] }
+			guard let cardEntries = activeCard?.entries else { return [[]] }
 			input = cardEntries.map{ $0 as! Entry}
 		}
 		let calendar = Calendar.current
@@ -322,17 +326,25 @@ class CardController {
 	}
 	
 	func createEntry(ofRating rating: Double, types: [FactorType]) {
+		guard let activeCard = activeCard else { return }
 		let entry = Entry(rating: rating, onCard: activeCard)
 		for type in types {
 			guard let name = type.name else { print("Name on factor type was nil. Mark not created."); return }
 			FactorMark(name: name, entry: entry, type: type)
 		}
 		CoreDataManager.saveToPersistentStore()
+		refreshActiveCardEntries()
 	}
 	
 	func delete(entry: Entry) {
 		CoreDataStack.context.delete(entry)
 		CoreDataManager.saveToPersistentStore()
+		refreshActiveCardEntries()
+	}
+	
+	func refreshActiveCardEntries() {
+		guard let entries = activeCard?.entries?.array as? [Entry] else { print("There was an error with OrderedSet to Array conversion") ; return }
+		activeCardEntries = entries
 	}
 }
 

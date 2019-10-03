@@ -13,6 +13,7 @@ import Combine
 struct Home: View {
 	@State var showModal = false
 	@State var selected: EntryButton.Selected?
+	@ObservedObject var cardController: CardController
     var body: some View {
 		VStack {
 			Spacer()
@@ -21,7 +22,7 @@ struct Home: View {
 		.sheet(isPresented: $showModal, onDismiss: {
 			self.showModal = false
 		}) {
-			EntryModal(selection: self.selected)
+			EntryModal(cardController: self.cardController, selection: self.selected)
 		}
 		.frame(alignment: .bottom)
     }
@@ -29,7 +30,7 @@ struct Home: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        EmptyView()
     }
 }
 

@@ -10,9 +10,14 @@ import SwiftUI
 
 struct EntryModal: View {
 	@Environment(\.presentationMode) var presentation
+	@ObservedObject var cardController: CardController
 	let selection: EntryButton.Selected?
 	var body: some View {
-		EmptyView()
+		List {
+			ForEach(cardController.activeCardFactorTypes, id: \.self) { factorType in
+				Text("Yes")
+			}
+		}
 	}
 }
 

@@ -16,7 +16,7 @@ class InsightGenerator {
 	
 	func generate(completion: @escaping ([Insight]) -> Void) {
 		let mainEntries = CardController.shared.activeCardEntries
-		cardName = CardController.shared.activeCard.name ?? ""
+		cardName = CardController.shared.activeCard?.name ?? ""
 		guard mainEntries.count > 10 else { completion([]) ; return  }
 		DispatchQueue.global().async {
 			let tmpContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -74,7 +74,7 @@ class InsightGenerator {
 	private func generateOverallAnalysis(entries: [Entry]) -> [Insight] {
 		
 		let allEntries = entries
-		var entriesByFactorType = sortIntoGroupsByFactorType(entries: allEntries)
+		let entriesByFactorType = sortIntoGroupsByFactorType(entries: allEntries)
 		var intervalAnalyses = [FactorType: [IntervalAnalysis]]()
 		for type in entriesByFactorType.keys {
 			guard let entries = entriesByFactorType[type] else { print("No entries sorted by this type") ; continue }
