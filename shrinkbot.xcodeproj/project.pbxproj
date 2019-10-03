@@ -14,6 +14,7 @@
 		CABDBDD32341A34800090FB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABDBDD22341A34800090FB3 /* Preview Assets.xcassets */; };
 		CABDBDD62341A34800090FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */; };
 		CAE09AF523442C8000370FAD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF323442C1B00370FAD /* Extensions.swift */; };
+		CAE09AF72345873100370FAD /* EntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF62345873100370FAD /* EntryButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CABDBDD52341A34800090FB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CABDBDD72341A34800090FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE09AF323442C1B00370FAD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CAE09AF62345873100370FAD /* EntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				CABDBDC92341A34500090FB3 /* AppDelegate.swift */,
 				CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */,
 				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				CAE09AF62345873100370FAD /* EntryButton.swift */,
 				CABDBDCF2341A34800090FB3 /* Assets.xcassets */,
 				CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */,
 				CABDBDD72341A34800090FB3 /* Info.plist */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE09AF72345873100370FAD /* EntryButton.swift in Sources */,
 				CABDBDCA2341A34500090FB3 /* AppDelegate.swift in Sources */,
 				CABDBDCC2341A34500090FB3 /* SceneDelegate.swift in Sources */,
 				CABDBDCE2341A34500090FB3 /* Home.swift in Sources */,
