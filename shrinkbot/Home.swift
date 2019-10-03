@@ -21,18 +21,10 @@ struct Home: View {
 		.sheet(isPresented: $showModal, onDismiss: {
 			self.showModal = false
 		}) {
-			Modal(selection: self.selected)
+			EntryModal(selection: self.selected)
 		}
 		.frame(alignment: .bottom)
     }
-}
-
-struct Modal: View {
-	@Environment(\.presentationMode) var presentation
-	let selection: EntryButton.Selected?
-	var body: some View {
-		EmptyView()
-	}
 }
 
 struct ContentView_Previews: PreviewProvider {

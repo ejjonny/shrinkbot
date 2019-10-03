@@ -15,6 +15,25 @@
 		CABDBDD62341A34800090FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */; };
 		CAE09AF523442C8000370FAD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF323442C1B00370FAD /* Extensions.swift */; };
 		CAE09AF72345873100370FAD /* EntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF62345873100370FAD /* EntryButton.swift */; };
+		CAE09AF923458CF500370FAD /* EntryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF823458CF500370FAD /* EntryModal.swift */; };
+		CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AFB23458E4300370FAD /* NotificationManager.swift */; };
+		CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AFA23458E4300370FAD /* CoreDataManager.swift */; };
+		CAE09B0423458EB400370FAD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0223458EB400370FAD /* Constants.swift */; };
+		CAE09B0523458EB400370FAD /* CollectionAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0323458EB400370FAD /* CollectionAverage.swift */; };
+		CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0C23458ED200370FAD /* Entry+Convenience.swift */; };
+		CAE09B1023458ED300370FAD /* FactorType+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0923458ED100370FAD /* FactorType+Convenience.swift */; };
+		CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0A23458ED200370FAD /* Card+Convenience.swift */; };
+		CAE09B1223458ED300370FAD /* Reminder+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0B23458ED200370FAD /* Reminder+Convenience.swift */; };
+		CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0D23458ED200370FAD /* FactorMark+Convenience.swift */; };
+		CAE09B1423458ED300370FAD /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0723458ED100370FAD /* Insight.swift */; };
+		CAE09B1523458ED300370FAD /* CardConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0823458ED100370FAD /* CardConfiguration.swift */; };
+		CAE09B1623458ED300370FAD /* EntryStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0E23458ED200370FAD /* EntryStats.swift */; };
+		CAE09B3E234591A700370FAD /* shrinkbot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */; };
+		CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B3F234592AD00370FAD /* CoreDataStack.swift */; };
+		CAE09B44234592EE00370FAD /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B42234592EE00370FAD /* ReminderController.swift */; };
+		CAE09B45234592EE00370FAD /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B41234592ED00370FAD /* CardController.swift */; };
+		CAE09B46234592EE00370FAD /* InsightGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B43234592EE00370FAD /* InsightGenerator.swift */; };
+		CAE09B492345936700370FAD /* DateAsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B482345936700370FAD /* DateAsString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +47,25 @@
 		CABDBDD72341A34800090FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE09AF323442C1B00370FAD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CAE09AF62345873100370FAD /* EntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButton.swift; sourceTree = "<group>"; };
+		CAE09AF823458CF500370FAD /* EntryModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModal.swift; sourceTree = "<group>"; };
+		CAE09AFA23458E4300370FAD /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CAE09AFB23458E4300370FAD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		CAE09B0023458E6B00370FAD /* ifeelgood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ifeelgood.xcdatamodel; sourceTree = "<group>"; };
+		CAE09B0223458EB400370FAD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CAE09B0323458EB400370FAD /* CollectionAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAverage.swift; sourceTree = "<group>"; };
+		CAE09B0723458ED100370FAD /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
+		CAE09B0823458ED100370FAD /* CardConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardConfiguration.swift; sourceTree = "<group>"; };
+		CAE09B0923458ED100370FAD /* FactorType+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FactorType+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0A23458ED200370FAD /* Card+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0B23458ED200370FAD /* Reminder+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0C23458ED200370FAD /* Entry+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0D23458ED200370FAD /* FactorMark+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FactorMark+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0E23458ED200370FAD /* EntryStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryStats.swift; sourceTree = "<group>"; };
+		CAE09B3F234592AD00370FAD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CAE09B41234592ED00370FAD /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		CAE09B42234592EE00370FAD /* ReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
+		CAE09B43234592EE00370FAD /* InsightGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGenerator.swift; sourceTree = "<group>"; };
+		CAE09B482345936700370FAD /* DateAsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAsString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +98,15 @@
 		CABDBDC82341A34500090FB3 /* shrinkbot */ = {
 			isa = PBXGroup;
 			children = (
-				CABDBDC92341A34500090FB3 /* AppDelegate.swift */,
-				CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */,
+				CAE09B0123458E8600370FAD /* AppResources */,
 				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				CAE09B47234592F300370FAD /* ModelControllers */,
+				CAE09AF823458CF500370FAD /* EntryModal.swift */,
 				CAE09AF62345873100370FAD /* EntryButton.swift */,
-				CABDBDCF2341A34800090FB3 /* Assets.xcassets */,
-				CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */,
-				CABDBDD72341A34800090FB3 /* Info.plist */,
-				CAE09AF223442C1B00370FAD /* Utilities */,
+				CAE09AFE23458E4A00370FAD /* Managers */,
+				CAE09B0623458EBB00370FAD /* Utilities */,
+				CAE09B1723458ED800370FAD /* Models */,
+				CAE09AF223442C1B00370FAD /* ViewUtilities */,
 				CABDBDD12341A34800090FB3 /* Preview Content */,
 			);
 			path = shrinkbot;
@@ -81,12 +120,70 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CAE09AF223442C1B00370FAD /* Utilities */ = {
+		CAE09AF223442C1B00370FAD /* ViewUtilities */ = {
 			isa = PBXGroup;
 			children = (
 				CAE09AF323442C1B00370FAD /* Extensions.swift */,
 			);
+			path = ViewUtilities;
+			sourceTree = "<group>";
+		};
+		CAE09AFE23458E4A00370FAD /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09AFA23458E4300370FAD /* CoreDataManager.swift */,
+				CAE09AFB23458E4300370FAD /* NotificationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CAE09B0123458E8600370FAD /* AppResources */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */,
+				CAE09B3F234592AD00370FAD /* CoreDataStack.swift */,
+				CABDBDC92341A34500090FB3 /* AppDelegate.swift */,
+				CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */,
+				CABDBDCF2341A34800090FB3 /* Assets.xcassets */,
+				CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */,
+				CABDBDD72341A34800090FB3 /* Info.plist */,
+			);
+			path = AppResources;
+			sourceTree = "<group>";
+		};
+		CAE09B0623458EBB00370FAD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09B0223458EB400370FAD /* Constants.swift */,
+				CAE09B0323458EB400370FAD /* CollectionAverage.swift */,
+				CAE09B482345936700370FAD /* DateAsString.swift */,
+			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CAE09B1723458ED800370FAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09B0A23458ED200370FAD /* Card+Convenience.swift */,
+				CAE09B0C23458ED200370FAD /* Entry+Convenience.swift */,
+				CAE09B0923458ED100370FAD /* FactorType+Convenience.swift */,
+				CAE09B0D23458ED200370FAD /* FactorMark+Convenience.swift */,
+				CAE09B0B23458ED200370FAD /* Reminder+Convenience.swift */,
+				CAE09B0E23458ED200370FAD /* EntryStats.swift */,
+				CAE09B0723458ED100370FAD /* Insight.swift */,
+				CAE09B0823458ED100370FAD /* CardConfiguration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAE09B47234592F300370FAD /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09B41234592ED00370FAD /* CardController.swift */,
+				CAE09B43234592EE00370FAD /* InsightGenerator.swift */,
+				CAE09B42234592EE00370FAD /* ReminderController.swift */,
+			);
+			path = ModelControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +258,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAE09AF72345873100370FAD /* EntryButton.swift in Sources */,
+				CAE09B1223458ED300370FAD /* Reminder+Convenience.swift in Sources */,
+				CAE09B46234592EE00370FAD /* InsightGenerator.swift in Sources */,
 				CABDBDCA2341A34500090FB3 /* AppDelegate.swift in Sources */,
 				CABDBDCC2341A34500090FB3 /* SceneDelegate.swift in Sources */,
+				CAE09B1523458ED300370FAD /* CardConfiguration.swift in Sources */,
+				CAE09B0523458EB400370FAD /* CollectionAverage.swift in Sources */,
+				CAE09B1623458ED300370FAD /* EntryStats.swift in Sources */,
+				CAE09B1023458ED300370FAD /* FactorType+Convenience.swift in Sources */,
+				CAE09B44234592EE00370FAD /* ReminderController.swift in Sources */,
 				CABDBDCE2341A34500090FB3 /* Home.swift in Sources */,
+				CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */,
+				CAE09AF923458CF500370FAD /* EntryModal.swift in Sources */,
+				CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */,
+				CAE09B492345936700370FAD /* DateAsString.swift in Sources */,
+				CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */,
+				CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */,
 				CAE09AF523442C8000370FAD /* Extensions.swift in Sources */,
+				CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */,
+				CAE09B45234592EE00370FAD /* CardController.swift in Sources */,
+				CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */,
+				CAE09B3E234591A700370FAD /* shrinkbot.xcdatamodeld in Sources */,
+				CAE09B1423458ED300370FAD /* Insight.swift in Sources */,
+				CAE09B0423458EB400370FAD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +420,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"shrinkbot/Preview Content\"";
 				DEVELOPMENT_TEAM = J8Z88H6B28;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = shrinkbot/Info.plist;
+				INFOPLIST_FILE = shrinkbot/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +440,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"shrinkbot/Preview Content\"";
 				DEVELOPMENT_TEAM = J8Z88H6B28;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = shrinkbot/Info.plist;
+				INFOPLIST_FILE = shrinkbot/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,6 +474,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CAE09B0023458E6B00370FAD /* ifeelgood.xcdatamodel */,
+			);
+			currentVersion = CAE09B0023458E6B00370FAD /* ifeelgood.xcdatamodel */;
+			path = shrinkbot.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CABDBDBE2341A34500090FB3 /* Project object */;
 }
