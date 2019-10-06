@@ -14,20 +14,32 @@ struct Home: View {
 	@State var showModal = false
 	@ObservedObject var cardController: CardController
 	@EnvironmentObject var buttonState: ButtonState
-    var body: some View {
+	@State var graphStyle: Int
+	var graphOptions = GraphRangeOptions.allCases
+	var body: some View {
 		ZStack {
 			VStack {
 				Spacer()
 				EntryButton()
 			}
 			.frame(alignment: .bottom)
-			GraphView(data: currentCardData())
-				.frame(width: 10, height: 100)
+			VStack {
+				Picker("Dates??", selection: $graphStyle) {
+					ForEach(0..<graphOptions.count, id: \.self) { index in
+						Text(self.graphOptions[index].rawValue).tag(index)
+					}
+				}
+				.pickerStyle(SegmentedPickerStyle())
+				.padding()
+				GraphView(data: currentCardData())
+					.frame(height: 100)
+					.padding()
+			}
 		}
     }
 	
 	func currentCardData() -> [Range<Double>] {
-		CardController.shared.entriesWith(graphViewStyle: .today).map { $0.averageRating - 1..<$0.averageRating + 1}
+		CardController.shared.entriesWith(graphViewStyle: graphOptions[graphStyle]).map { $0.ratingRange }
 	}
 }
 

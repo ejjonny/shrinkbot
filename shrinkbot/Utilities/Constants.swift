@@ -21,12 +21,12 @@ enum EntryDateStyles: String {
 	case year = "year"
 }
 
-enum GraphRangeOptions {
-	case allTime
-	case thisWeek
-	case thisMonth
-	case thisYear
-	case today
+enum GraphRangeOptions: String, CaseIterable {
+	case allTime = "All"
+	case thisWeek = "Week"
+	case thisMonth = "Month"
+	case thisYear = "Year"
+	case today = "Today"
 }
 
 enum Frequency: Int16 {

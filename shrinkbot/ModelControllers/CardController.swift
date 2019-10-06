@@ -171,10 +171,8 @@ class CardController: ObservableObject {
 			if let date = group.first?.date {
 				name = dateFormat(date)()
 			}
-			var ratings = [Double]()
 			var markTypes = [FactorType]()
 			group.forEach{
-				ratings.append($0.rating)
 				let marksArray = $0.factorMarks?.array as! [FactorMark]
 				for mark in marksArray {
 					guard let type = mark.type,
@@ -182,9 +180,10 @@ class CardController: ObservableObject {
 					markTypes.append(type)
 				}
 			}
-			let stat = EntryStats(name: name, ratingCount: group.count, averageRating: group.map{ $0.rating }.average, factorTypes: markTypes)
 			// This filters out entries saved with only a factor & no rating so that data isn't skewed.
-			if stat.averageRating != 0 {
+			let ratings = group.map { $0.rating }
+			if let upperBound = ratings.max(), let lowerBound = ratings.min() {
+				let stat = EntryStats(name: name, ratingCount: group.count, ratingRange: lowerBound..<upperBound, factorTypes: markTypes)
 				stats.append(stat)
 			}
 		}
@@ -195,8 +194,7 @@ class CardController: ObservableObject {
 	func entriesWith(dateStyle: EntryDateStyles) -> [EntryStats] {
 		var stats: [EntryStats] = []
 		for group in getEntries(groupedBy: dateStyle) {
-			let totalRatings = group.map{ $0.rating }.reduce(0, +)
-			let average = totalRatings / Double(group.count)
+			let ratings = group.map{ $0.rating }
 			var name = ""
 			guard let date = group.first?.date else { print("Error compiling entries by date") ; return [] }
 			switch dateStyle {
@@ -211,7 +209,9 @@ class CardController: ObservableObject {
 			case .year:
 				break
 			}
-			stats.append(EntryStats(name: name, ratingCount: group.count, averageRating: average, factorTypes: []))
+			if let upperBound = ratings.max(), let lowerBound = ratings.min() {
+				stats.append(EntryStats(name: name, ratingCount: group.count, ratingRange: lowerBound..<upperBound, factorTypes: []))
+			}
 		}
 		return stats.reversed()
 	}

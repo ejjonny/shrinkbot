@@ -54,6 +54,21 @@ struct EntryButton: View {
 				return "SGA"
 			}
 		}
+		
+		func color() -> Color {
+			switch self {
+			case .realBad:
+				return Color(red: 141 / 255, green: 170 / 255, blue: 204 / 255)
+			case .bad:
+				return Color(red: 172 / 255, green: 200 / 255, blue: 233 / 255)
+			case .meh:
+				return Color(red: 232 / 255, green: 232 / 255, blue: 232 / 255)
+			case .good:
+				return Color(red: 206 / 255, green: 228 / 255, blue: 253 / 255)
+			case .realGood:
+				return Color(red: 229 / 255, green: 241 / 255, blue: 254 / 255)
+			}
+		}
 	}
 	var bloat: CGFloat {
 		expanded ? 10 : 0
