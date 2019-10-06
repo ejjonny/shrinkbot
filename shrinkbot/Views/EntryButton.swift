@@ -33,7 +33,7 @@ struct EntryButton: View {
 	var controlWidth: CGFloat? {
 		expanded ? nil : 100
 	}
-	enum Selected: Int {
+	enum Selected: Int, CaseIterable {
 		case realBad
 		case bad
 		case meh

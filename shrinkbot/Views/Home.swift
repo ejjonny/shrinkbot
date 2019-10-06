@@ -19,22 +19,57 @@ struct Home: View {
 	var body: some View {
 		ZStack {
 			VStack {
+				VStack(spacing: 20) {
+					HStack {
+						Text(CardController.shared.activeCard?.name ?? "Card Name")
+							.font(.system(size: 25, weight: Font.Weight.medium))
+						Spacer()
+						HStack(spacing: 15) {
+							Button(action: {
+							}) {
+								Image(systemName: "ellipsis.circle")
+									.resizable()
+									.scaledToFit()
+							}
+							.frame(width: 30)
+							.buttonStyle(BubbleButton())
+							Button(action: {
+							}) {
+								Image(systemName: "square.and.pencil")
+									.resizable()
+									.scaledToFit()
+							}
+							.frame(width: 30)
+							.buttonStyle(BubbleButton())
+							Button(action: {
+							}) {
+								Image(systemName: "list.bullet")
+									.resizable()
+									.scaledToFit()
+							}
+							.frame(width: 30)
+							.buttonStyle(BubbleButton())
+						}
+					}
+					.padding([.top], 30)
+					Picker("Dates??", selection: $graphStyle) {
+						ForEach(0..<graphOptions.count, id: \.self) { index in
+							Text(self.graphOptions[index].rawValue).tag(index)
+						}
+					}
+					.pickerStyle(SegmentedPickerStyle())
+					.zIndex(1)
+					GraphView(data: currentCardData())
+						.frame(height: 250)
+				}
+				Spacer()
+			}
+			.padding()
+			VStack {
 				Spacer()
 				EntryButton()
 			}
 			.frame(alignment: .bottom)
-			VStack {
-				Picker("Dates??", selection: $graphStyle) {
-					ForEach(0..<graphOptions.count, id: \.self) { index in
-						Text(self.graphOptions[index].rawValue).tag(index)
-					}
-				}
-				.pickerStyle(SegmentedPickerStyle())
-				.padding()
-				GraphView(data: currentCardData())
-					.frame(height: 100)
-					.padding()
-			}
 		}
     }
 	
