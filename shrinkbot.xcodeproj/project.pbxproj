@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CAAD4A972349DA7700CA72B1 /* GraphCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A962349DA7700CA72B1 /* GraphCapsule.swift */; };
+		CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A982349DA7D00CA72B1 /* GraphView.swift */; };
+		CAAD4A9B2349DA7D00CA72B1 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A992349DA7D00CA72B1 /* Grid.swift */; };
+		CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */; };
 		CABDBDCA2341A34500090FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDC92341A34500090FB3 /* AppDelegate.swift */; };
 		CABDBDCC2341A34500090FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */; };
 		CABDBDCE2341A34500090FB3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDCD2341A34500090FB3 /* Home.swift */; };
@@ -37,6 +41,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CAAD4A962349DA7700CA72B1 /* GraphCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCapsule.swift; sourceTree = "<group>"; };
+		CAAD4A982349DA7D00CA72B1 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		CAAD4A992349DA7D00CA72B1 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleButton.swift; sourceTree = "<group>"; };
 		CABDBDC62341A34500090FB3 /* shrinkbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shrinkbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABDBDC92341A34500090FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,7 +197,11 @@
 			children = (
 				CABDBDCD2341A34500090FB3 /* Home.swift */,
 				CAE09AF823458CF500370FAD /* EntryModal.swift */,
+				CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */,
 				CAE09AF62345873100370FAD /* EntryButton.swift */,
+				CAAD4A962349DA7700CA72B1 /* GraphCapsule.swift */,
+				CAAD4A992349DA7D00CA72B1 /* Grid.swift */,
+				CAAD4A982349DA7D00CA72B1 /* GraphView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,10 +291,14 @@
 				CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */,
 				CAE09AF923458CF500370FAD /* EntryModal.swift in Sources */,
 				CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */,
+				CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */,
 				CAE09B492345936700370FAD /* DateAsString.swift in Sources */,
+				CAAD4A972349DA7700CA72B1 /* GraphCapsule.swift in Sources */,
 				CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */,
 				CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */,
+				CAAD4A9B2349DA7D00CA72B1 /* Grid.swift in Sources */,
 				CAE09AF523442C8000370FAD /* Extensions.swift in Sources */,
+				CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */,
 				CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */,
 				CAE09B45234592EE00370FAD /* CardController.swift in Sources */,
 				CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */,

@@ -33,6 +33,12 @@ struct EntryModal: View {
 	}
 	var body: some View {
 		VStack {
+			Rectangle()
+				.foregroundColor(selectionColor)
+				.frame(height: 20)
+			Text("Add factors to your journal entry")
+				.font(.system(size: 25, weight: Font.Weight.medium))
+				.frame(height: 70, alignment: .center)
 			ZStack {
 				ScrollView([.vertical], showsIndicators: false) {
 					ForEach(factorTypes.indices, id: \.self) { index in
@@ -57,6 +63,7 @@ struct EntryModal: View {
 							.frame(height: 100)
 							.padding()
 						}
+					.buttonStyle(BubbleButton())
 					}
 				}
 			}
@@ -81,6 +88,7 @@ struct EntryModal: View {
 						.padding(35)
 				}
 			}
+			.buttonStyle(BubbleButton())
 			.frame(width: 100, height: 100)
 			.padding()
 		}

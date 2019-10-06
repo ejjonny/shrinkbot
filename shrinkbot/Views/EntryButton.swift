@@ -147,13 +147,10 @@ struct EntryButton: View {
 		}
 		.padding()
 		.animation(
-			Animation.spring(dampingFraction: 0.5)
-				.speed(3)
+			.shrinkbotSpring()
 		)
 		.sheet(isPresented: $modalPresenting, onDismiss: {
-			self.selection = nil
-			self.expanded = false
-			self.xOffset = 0
+			self.close()
 			}) {
 				EntryModal(selection: self.$selection, expanded: self.$expanded, xOffset: self.$xOffset, factorTypes: CardController.shared.activeCardFactorTypes)
 		}
@@ -165,6 +162,7 @@ struct EntryButton: View {
 	}
 	
 	func close() {
+		selection = nil
 		expanded = false
 		xOffset = 0
 	}
@@ -181,4 +179,11 @@ struct EntryButton_Previews: PreviewProvider {
     static var previews: some View {
 		EntryButton()
     }
+}
+
+extension Animation {
+	static func shrinkbotSpring() -> Animation {
+		Animation.spring(dampingFraction: 0.5)
+			.speed(3)
+	}
 }

@@ -15,18 +15,20 @@ struct Home: View {
 	@ObservedObject var cardController: CardController
 	@EnvironmentObject var buttonState: ButtonState
     var body: some View {
-		VStack {
-			Spacer()
-			EntryButton()
+		ZStack {
+			VStack {
+				Spacer()
+				EntryButton()
+			}
+			.frame(alignment: .bottom)
+			GraphView(data: currentCardData())
+				.frame(width: 10, height: 100)
 		}
-		.frame(alignment: .bottom)
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmptyView()
-    }
+	
+	func currentCardData() -> [Range<Double>] {
+		CardController.shared.entriesWith(graphViewStyle: .today).map { $0.averageRating - 1..<$0.averageRating + 1}
+	}
 }
 
 class ButtonState: ObservableObject {
