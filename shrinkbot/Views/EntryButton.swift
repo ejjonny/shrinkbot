@@ -11,9 +11,9 @@ import SwiftUI
 struct EntryButton: View {
 	@State var expanded: Bool = false
 	@State var xOffset: CGFloat = 0
-	@Binding var selected: Selected? {
+	@State var selection: Selected? {
 		didSet {
-			if selected != oldValue {
+			if selection != oldValue {
 				bump(.light)
 			}
 		}
@@ -27,22 +27,33 @@ struct EntryButton: View {
 			}
 		}
 	}
-	@Binding var presentModal: Bool {
-		didSet {
-			selected = nil
-		}
-	}
+	@State var modalPresenting: Bool = false
 	
 	var controlHeight: CGFloat = 100
 	var controlWidth: CGFloat? {
 		expanded ? nil : 100
 	}
-	enum Selected: String {
-		case realBad = "SBA"
-		case bad = "BA"
-		case meh = "NA"
-		case good = "GA"
-		case realGood = "SGA"
+	enum Selected: Int {
+		case realBad
+		case bad
+		case meh
+		case good
+		case realGood
+		
+		func imageString() -> String {
+			switch self {
+			case .realBad:
+				return "SBA"
+			case .bad:
+				return "BA"
+			case .meh:
+				return "NA"
+			case .good:
+				return "GA"
+			case .realGood:
+				return "SGA"
+			}
+		}
 	}
 	var bloat: CGFloat {
 		expanded ? 10 : 0
@@ -59,7 +70,7 @@ struct EntryButton: View {
 		}
 	}
 	var strokeOpacity: Double {
-		switch (expanded, selected) {
+		switch (expanded, selection) {
 		case (true, _):
 			return 0.4
 		case (false, nil):
@@ -69,12 +80,12 @@ struct EntryButton: View {
 		}
 	}
 	var body: some View {
-		ZStack {
+		return ZStack {
 			Capsule()
 				.stroke(Color.black.opacity(strokeOpacity), lineWidth: lineWidth)
 				.frame(width: self.controlWidth, height: self.controlHeight + bloat - (expanded ? 40 : 0))
 			GeometryReader { proxy in
-					Image(self.selected?.rawValue ?? "GI")
+				Image(self.selection?.imageString() ?? "GI")
 						.resizable()
 						.aspectRatio(contentMode: .fit)
 						.offset(x: self.xOffset, y: self.expanded ? -self.controlHeight - self.bloat - 10 : 0)
@@ -87,19 +98,19 @@ struct EntryButton: View {
 									let sliderRangeMagnitude = proxy.size.width - self.controlHeight - self.bloat
 									let eighthLength = sliderRangeMagnitude / 8
 									if ((-eighthLength * 4)..<(-eighthLength * 3)).contains(location) {
-										self.selected = .realBad
+										self.selection = .realBad
 										self.xOffset = -sliderRangeMagnitude / 2
 									} else if ((-eighthLength * 3)..<(-eighthLength)).contains(location) {
-										self.selected = .bad
+										self.selection = .bad
 										self.xOffset = -sliderRangeMagnitude / 4
 									} else if ((-eighthLength)..<(eighthLength)).contains(location) {
-										self.selected = .meh
+										self.selection = .meh
 										self.xOffset = 0
 									} else if ((eighthLength)..<(eighthLength * 3)).contains(location) {
-										self.selected = .good
+										self.selection = .good
 										self.xOffset = sliderRangeMagnitude / 4
 									} else if ((eighthLength * 3)..<(eighthLength * 4)).contains(location) {
-										self.selected = .realGood
+										self.selection = .realGood
 										self.xOffset = sliderRangeMagnitude / 2
 									}
 									if value.location.y < -30, !self.hovering {
@@ -109,14 +120,11 @@ struct EntryButton: View {
 									}
 							}
 							.onEnded{ value in
-								if value.location.y > -30 {
-									self.selected = nil
-								}
-								self.expanded = false
-								self.xOffset = 0
-								if self.selected != nil {
+								if !self.hovering {
+									self.close()
+								} else if self.selection != nil {
 									self.bump(.rigid)
-									self.presentModal = true
+									self.modalPresenting = true
 									DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
 										self.bump(.medium)
 									}
@@ -142,6 +150,23 @@ struct EntryButton: View {
 			Animation.spring(dampingFraction: 0.5)
 				.speed(3)
 		)
+		.sheet(isPresented: $modalPresenting, onDismiss: {
+			self.selection = nil
+			self.expanded = false
+			self.xOffset = 0
+			}) {
+				EntryModal(selection: self.$selection, expanded: self.$expanded, xOffset: self.$xOffset, factorTypes: CardController.shared.activeCardFactorTypes)
+		}
+
+	}
+	
+	func open() {
+		expanded = true
+	}
+	
+	func close() {
+		expanded = false
+		xOffset = 0
 	}
 	
 	func bump(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
@@ -151,7 +176,9 @@ struct EntryButton: View {
 
 
 struct EntryButton_Previews: PreviewProvider {
+	static var selected: EntryButton.Selected?
+	static var selectedBinding = Binding(get: { selected }) { selected = $0 }
     static var previews: some View {
-        EmptyView()
+		EntryButton()
     }
 }

@@ -12,17 +12,12 @@ import Combine
 
 struct Home: View {
 	@State var showModal = false
-	@State var selected: EntryButton.Selected?
 	@ObservedObject var cardController: CardController
+	@EnvironmentObject var buttonState: ButtonState
     var body: some View {
 		VStack {
 			Spacer()
-			EntryButton(selected: $selected, presentModal: $showModal)
-		}
-		.sheet(isPresented: $showModal, onDismiss: {
-			self.showModal = false
-		}) {
-			EntryModal(cardController: self.cardController, selection: self.selected)
+			EntryButton()
 		}
 		.frame(alignment: .bottom)
     }
@@ -34,3 +29,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+class ButtonState: ObservableObject {
+	@Published var open: Bool = false
+	@Published var selection: EntryButton.Selected?
+}
