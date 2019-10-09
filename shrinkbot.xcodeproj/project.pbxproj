@@ -38,6 +38,8 @@
 		CAE09B45234592EE00370FAD /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B41234592ED00370FAD /* CardController.swift */; };
 		CAE09B46234592EE00370FAD /* InsightGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B43234592EE00370FAD /* InsightGenerator.swift */; };
 		CAE09B492345936700370FAD /* DateAsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B482345936700370FAD /* DateAsString.swift */; };
+		CAF8D0D7234D851800A5D2AA /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF8D0D6234D851800A5D2AA /* CardInfo.swift */; };
+		CAF8D0D9234D86C400A5D2AA /* InsightStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF8D0D8234D86C400A5D2AA /* InsightStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		CAE09B42234592EE00370FAD /* ReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		CAE09B43234592EE00370FAD /* InsightGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGenerator.swift; sourceTree = "<group>"; };
 		CAE09B482345936700370FAD /* DateAsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAsString.swift; sourceTree = "<group>"; };
+		CAF8D0D6234D851800A5D2AA /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
+		CAF8D0D8234D86C400A5D2AA /* InsightStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				CAF8D0D8234D86C400A5D2AA /* InsightStack.swift */,
+				CAF8D0D6234D851800A5D2AA /* CardInfo.swift */,
 				CAE09AF823458CF500370FAD /* EntryModal.swift */,
 				CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */,
 				CAE09AF62345873100370FAD /* EntryButton.swift */,
@@ -286,6 +292,7 @@
 				CAE09B0523458EB400370FAD /* CollectionAverage.swift in Sources */,
 				CAE09B1623458ED300370FAD /* EntryStats.swift in Sources */,
 				CAE09B1023458ED300370FAD /* FactorType+Convenience.swift in Sources */,
+				CAF8D0D9234D86C400A5D2AA /* InsightStack.swift in Sources */,
 				CAE09B44234592EE00370FAD /* ReminderController.swift in Sources */,
 				CABDBDCE2341A34500090FB3 /* Home.swift in Sources */,
 				CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */,
@@ -296,6 +303,7 @@
 				CAAD4A972349DA7700CA72B1 /* GraphCapsule.swift in Sources */,
 				CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */,
 				CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */,
+				CAF8D0D7234D851800A5D2AA /* CardInfo.swift in Sources */,
 				CAAD4A9B2349DA7D00CA72B1 /* Grid.swift in Sources */,
 				CAE09AF523442C8000370FAD /* Extensions.swift in Sources */,
 				CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */,

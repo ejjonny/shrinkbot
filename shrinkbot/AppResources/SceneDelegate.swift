@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Create the SwiftUI view that provides the window contents.
 		CardController.shared.refreshActiveCard()
 		
-		let contentView = Home(cardController: CardController.shared, graphStyle: 4)
+		let contentView = Home(cardController: CardController.shared)
 		// Use a UIHostingController as window root view controller.
 		if let windowScene = scene as? UIWindowScene {
 		    let window = UIWindow(windowScene: windowScene)
