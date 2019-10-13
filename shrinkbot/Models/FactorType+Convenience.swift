@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 extension FactorType {
-	@discardableResult
-	convenience init(name: String, card: Card, moc: NSManagedObjectContext = CoreDataStack.context) {
-		self.init(context: moc)
-		self.name = name
-		self.card = card
-	}
+    @discardableResult
+    convenience init(name: String, card: Card, moc: NSManagedObjectContext = CoreDataStack.context) {
+        self.init(context: moc)
+        self.name = name
+        self.card = card
+    }
 }

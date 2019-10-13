@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct BubbleButton: ButtonStyle {
-	func makeBody(configuration: Self.Configuration) -> some View {
-		configuration.label
-			.padding(configuration.isPressed ? 5 : 0)
-			.animation(.shrinkbotSpring())
-	}
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .padding(configuration.isPressed ? 5 : 0)
+            .animation(.shrinkbotSpring())
+    }
 }

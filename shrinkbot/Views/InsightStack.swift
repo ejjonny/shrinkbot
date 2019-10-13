@@ -27,10 +27,6 @@ struct InsightStack: View {
 
 struct InsightStack_Previews: PreviewProvider {
     static var previews: some View {
-<<<<<<< HEAD
-		InsightStack(spacing: 20, cardController: .constant(CardController.shared))
-=======
         InsightStack(spacing: 20, cardController: .constant(CardController.shared))
->>>>>>> 4cb8df7501866d6e5a5450a1a48f65705ed59df5
     }
 }

@@ -14,24 +14,24 @@ let middleChillBlue: UIColor = #colorLiteral(red: 0.8476651309, green: 0.9208347
 let legendColors = [#colorLiteral(red: 0.7883887887, green: 0.7393109202, blue: 1, alpha: 1), #colorLiteral(red: 1, green: 0.8194651824, blue: 0.894031874, alpha: 1), #colorLiteral(red: 1, green: 0.9575231352, blue: 0.7737829244, alpha: 1), #colorLiteral(red: 0.7617713751, green: 1, blue: 0.8736094954, alpha: 1), #colorLiteral(red: 1, green: 0.6711962363, blue: 0.9908545294, alpha: 1), #colorLiteral(red: 0.7044421855, green: 0.9814820289, blue: 1, alpha: 1)]
 
 enum EntryDateStyles: String {
-	case all = "all"
-	case day = "day"
-	case week = "week"
-	case month = "month"
-	case year = "year"
+    case all = "all"
+    case day = "day"
+    case week = "week"
+    case month = "month"
+    case year = "year"
 }
 
 enum GraphRangeOptions: String, CaseIterable {
-	case allTime = "All"
-	case thisMonth = "Month"
-	case thisYear = "Year"
-	case thisWeek = "Week"
-	case today = "Today"
+    case allTime = "All"
+    case thisMonth = "Month"
+    case thisYear = "Year"
+    case thisWeek = "Week"
+    case today = "Today"
 }
 
 enum Frequency: Int16 {
-	case daily
-	case weekly
+    case daily
+    case weekly
 }
 
 let day = TimeInterval(exactly: 86400)!

@@ -10,11 +10,11 @@ import Foundation
 import CoreData
 
 extension FactorMark {
-	@discardableResult
-	convenience init(name: String, entry: Entry, type: FactorType, moc: NSManagedObjectContext = CoreDataStack.context) {
-		self.init(context: moc)
-		self.name = name
-		self.entry = entry
-		self.type = type
-	}
+    @discardableResult
+    convenience init(name: String, entry: Entry, type: FactorType, moc: NSManagedObjectContext = CoreDataStack.context) {
+        self.init(context: moc)
+        self.name = name
+        self.entry = entry
+        self.type = type
+    }
 }

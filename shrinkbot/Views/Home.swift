@@ -11,30 +11,30 @@ import CoreHaptics
 import Combine
 
 struct Home: View {
-	@State var showModal = false
-	@ObservedObject var cardController: CardController
-	@EnvironmentObject var buttonState: ButtonState
-	let spacing: CGFloat = 20
-	var body: some View {
-		ZStack {
-			ScrollView(showsIndicators: false) {
-				VStack(spacing: spacing) {
-					CardInfo(graphStyle: 4, spacing: spacing)
-//					InsightStack(spacing: spacing, cardController: cardController)
-				}
-				.padding()
-			}
-			VStack {
-				Spacer()
-				EntryButton()
-			}
-			.frame(alignment: .bottom)
-		}
-		
-	}
+    @State var showModal = false
+    @ObservedObject var cardController: CardController
+    @EnvironmentObject var buttonState: ButtonState
+    let spacing: CGFloat = 20
+    var body: some View {
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: spacing) {
+                    CardInfo(graphStyle: 4, spacing: spacing)
+                    //					InsightStack(spacing: spacing, cardController: cardController)
+                }
+                .padding()
+            }
+            VStack {
+                Spacer()
+                EntryButton()
+            }
+            .frame(alignment: .bottom)
+        }
+        
+    }
 }
-	
-	class ButtonState: ObservableObject {
-		@Published var open: Bool = false
-		@Published var selection: EntryButton.Selected?
+
+class ButtonState: ObservableObject {
+    @Published var open: Bool = false
+    @Published var selection: EntryButton.Selected?
 }
