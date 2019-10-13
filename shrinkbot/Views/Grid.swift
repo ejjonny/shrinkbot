@@ -42,6 +42,6 @@ struct Grid: View {
 
 struct Grid_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        Grid(yCount: 4, xCount: 0..<4, height: 200, width: 200)
     }
 }
