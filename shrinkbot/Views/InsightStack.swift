@@ -9,24 +9,24 @@
 import SwiftUI
 
 struct InsightStack: View {
-	var spacing: CGFloat
-	@State var insights: [Insight] = [Insight]()
-	@Binding var cardController: CardController
+    var spacing: CGFloat
+    @State var insights: [Insight] = [Insight]()
+    @Binding var cardController: CardController
     var body: some View {
-		VStack(spacing: spacing) {
-			Text("sldjk")
-		}
-		.onAppear {
-			self.loadInsights()
-		}
+        VStack(spacing: spacing) {
+            Text("sldjk")
+        }
+        .onAppear {
+            self.loadInsights()
+        }
     }
-	func loadInsights() {
-		
-	}
+    func loadInsights() {
+        
+    }
 }
 
 struct InsightStack_Previews: PreviewProvider {
     static var previews: some View {
-        InsightStack(spacing: 20)
+        InsightStack(spacing: 20, cardController: .constant(CardController.shared))
     }
 }
