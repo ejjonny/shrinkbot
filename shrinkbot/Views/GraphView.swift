@@ -22,7 +22,7 @@ struct GraphView: View {
 			ZStack {
 				RoundedRectangle(cornerRadius: 10)
 					.foregroundColor(EntryButton.Selected.good.color())
-				Grid(yCount: Int(overallRange.upperBound.rounded()), xCount: self.data.indices.count - 1, height: geometry.size.height, width: geometry.size.width)
+				Grid(yCount: Int(overallRange.upperBound.rounded()), xCount: self.data.indices, height: geometry.size.height, width: geometry.size.width)
 					.padding(8)
 				HStack {
 					ForEach(self.data.indices, id: \.self) { index in
