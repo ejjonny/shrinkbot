@@ -9,44 +9,52 @@
 import SwiftUI
 
 struct CardInfo: View {
-    @State var graphStyle: Int
+    @State var pickerInt: Int
+    var graphOptionSelection: GraphRangeOptions {
+        GraphRangeOptions.allCases[pickerInt]
+    }
     var graphOptions = GraphRangeOptions.allCases
     var spacing: CGFloat
+    
     var body: some View {
         VStack(spacing: spacing) {
             HStack {
                 Text(CardController.shared.activeCard?.name ?? "Card Name")
                     .font(.system(size: 25, weight: Font.Weight.medium))
                 Spacer()
-                HStack(spacing: 15) {
+                HStack(spacing: 25) {
                     Button(action: {
                     }) {
-                        Image(systemName: "ellipsis.circle")
+                        Image(systemName: "ellipsis")
                             .resizable()
-                            .scaledToFit()
+                            .aspectRatio(140 / 31, contentMode: .fit)
                     }
-                    .frame(width: 30)
+                    .frame(width: 20, height: 20)
                     .buttonStyle(BubbleButton())
                     Button(action: {
                     }) {
                         Image(systemName: "square.and.pencil")
                             .resizable()
-                            .scaledToFit()
+                            .aspectRatio(1, contentMode: .fit)
                     }
-                    .frame(width: 30)
+                    .frame(width: 20, height: 20)
                     .buttonStyle(BubbleButton())
                     Button(action: {
                     }) {
-                        Image(systemName: "list.bullet")
+                    Image(systemName: "list.bullet")
                             .resizable()
-                            .scaledToFit()
+                            .aspectRatio(17 / 12, contentMode: .fit)
                     }
-                    .frame(width: 30)
+                    .frame(width: 20, height: 20)
                     .buttonStyle(BubbleButton())
                 }
             }
-            .padding([.top], 30)
-            Picker("Dates??", selection: $graphStyle) {
+            .padding(15)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Rating.good.color().opacity(0.5))
+            )
+            Picker("Dates??", selection: $pickerInt) {
                 ForEach(0..<graphOptions.count, id: \.self) { index in
                     Text(self.graphOptions[index].rawValue).tag(index)
                 }
@@ -59,7 +67,7 @@ struct CardInfo: View {
     }
     
     func currentCardData() -> [Range<Double>] {
-        CardController.shared.entriesWith(graphViewStyle: graphOptions[graphStyle]).map { $0.ratingRange }
+        CardController.shared.entriesWith(graphViewStyle: graphOptionSelection).map { $0.ratingRange }
     }
 }
 

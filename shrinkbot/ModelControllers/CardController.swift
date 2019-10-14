@@ -280,7 +280,7 @@ class CardController: ObservableObject {
         default:
             break
         }
-        return entryArray.filter{
+        return entryArray.filter {
             guard let date = $0.date else { print("An entry was missing a date") ; return false }
             return period.contains(date)
         }
@@ -318,11 +318,11 @@ class CardController: ObservableObject {
                 calendar.dateComponents([.year], from: $0.date!)
             })
         }
-        return grouped.map{ $0.value }.sorted(by: { (arrayOne, arrayTwo) -> Bool in
+        return grouped.map{ $0.value }.sorted() { (arrayOne, arrayTwo) -> Bool in
             guard let firstDate = arrayOne.first?.date,
                 let secondDate = arrayTwo.first?.date else { print("Failed to sort") ; return true }
             return firstDate.compare(secondDate) == ComparisonResult.orderedAscending
-        })
+        }
     }
     
     func createEntry(ofRating rating: Double, types: [FactorType]) {

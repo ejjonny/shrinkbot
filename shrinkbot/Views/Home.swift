@@ -19,7 +19,7 @@ struct Home: View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: spacing) {
-                    CardInfo(graphStyle: 4, spacing: spacing)
+                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, spacing: spacing)
                 }
                 .padding()
             }
@@ -35,5 +35,5 @@ struct Home: View {
 
 class ButtonState: ObservableObject {
     @Published var open: Bool = false
-    @Published var selection: EntryButton.Selected?
+    @Published var selection: Rating?
 }

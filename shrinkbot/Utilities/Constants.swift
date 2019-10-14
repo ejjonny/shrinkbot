@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 let chillBlue: UIColor = #colorLiteral(red: 0.9126966596, green: 0.9402826428, blue: 0.998428762, alpha: 1)
 let deepChillBlue: UIColor = #colorLiteral(red: 0.7379525547, green: 0.8377566145, blue: 0.9988933206, alpha: 1)
@@ -38,3 +39,41 @@ let day = TimeInterval(exactly: 86400)!
 let week = TimeInterval(exactly: 604800)!
 let month = TimeInterval(exactly: 2629800)!
 let year = TimeInterval(exactly: 31557600)!
+
+enum Rating: Int, CaseIterable {
+    case realBad
+    case bad
+    case meh
+    case good
+    case realGood
+    
+    func imageString() -> String {
+        switch self {
+        case .realBad:
+            return "SBA"
+        case .bad:
+            return "BA"
+        case .meh:
+            return "NA"
+        case .good:
+            return "GA"
+        case .realGood:
+            return "SGA"
+        }
+    }
+    
+    func color() -> Color {
+        switch self {
+        case .realBad:
+            return Color(red: 141 / 255, green: 170 / 255, blue: 204 / 255)
+        case .bad:
+            return Color(red: 172 / 255, green: 200 / 255, blue: 233 / 255)
+        case .meh:
+            return Color(red: 232 / 255, green: 232 / 255, blue: 232 / 255)
+        case .good:
+            return Color(red: 206 / 255, green: 228 / 255, blue: 253 / 255)
+        case .realGood:
+            return Color(red: 229 / 255, green: 241 / 255, blue: 254 / 255)
+        }
+    }
+}

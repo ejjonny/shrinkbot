@@ -21,7 +21,7 @@ struct GraphView: View {
         return GeometryReader { geometry in
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(EntryButton.Selected.good.color())
+                    .foregroundColor(Rating.good.color().opacity(0.5))
                 Grid(yCount: Int(overallRange.upperBound.rounded()), xCount: self.data.indices, height: geometry.size.height, width: geometry.size.width)
                     .padding(8)
                 HStack {

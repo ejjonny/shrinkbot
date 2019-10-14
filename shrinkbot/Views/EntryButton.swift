@@ -11,7 +11,7 @@ import SwiftUI
 struct EntryButton: View {
     @State var expanded: Bool = false
     @State var xOffset: CGFloat = 0
-    @State var selection: Selected? {
+    @State var selection: Rating? {
         didSet {
             if selection != oldValue {
                 bump(.light)
@@ -32,43 +32,6 @@ struct EntryButton: View {
     var controlHeight: CGFloat = 100
     var controlWidth: CGFloat? {
         expanded ? nil : 100
-    }
-    enum Selected: Int, CaseIterable {
-        case realBad
-        case bad
-        case meh
-        case good
-        case realGood
-        
-        func imageString() -> String {
-            switch self {
-            case .realBad:
-                return "SBA"
-            case .bad:
-                return "BA"
-            case .meh:
-                return "NA"
-            case .good:
-                return "GA"
-            case .realGood:
-                return "SGA"
-            }
-        }
-        
-        func color() -> Color {
-            switch self {
-            case .realBad:
-                return Color(red: 141 / 255, green: 170 / 255, blue: 204 / 255)
-            case .bad:
-                return Color(red: 172 / 255, green: 200 / 255, blue: 233 / 255)
-            case .meh:
-                return Color(red: 232 / 255, green: 232 / 255, blue: 232 / 255)
-            case .good:
-                return Color(red: 206 / 255, green: 228 / 255, blue: 253 / 255)
-            case .realGood:
-                return Color(red: 229 / 255, green: 241 / 255, blue: 254 / 255)
-            }
-        }
     }
     var bloat: CGFloat {
         expanded ? 10 : 0
@@ -189,7 +152,7 @@ struct EntryButton: View {
 
 
 struct EntryButton_Previews: PreviewProvider {
-    static var selected: EntryButton.Selected?
+    static var selected: Rating?
     static var selectedBinding = Binding(get: { selected }) { selected = $0 }
     static var previews: some View {
         EntryButton()

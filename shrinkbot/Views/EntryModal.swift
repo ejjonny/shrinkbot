@@ -11,7 +11,7 @@ import SwiftUI
 struct EntryModal: View {
     @Environment(\.presentationMode) var presentation
     @State var selectedIndexes = [Int]()
-    @Binding var selection: EntryButton.Selected?
+    @Binding var selection: Rating?
     @Binding var expanded: Bool
     @Binding var xOffset: CGFloat
     var factorTypes = [FactorType]()
