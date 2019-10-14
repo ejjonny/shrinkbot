@@ -20,7 +20,6 @@ struct Home: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: spacing) {
                     CardInfo(graphStyle: 4, spacing: spacing)
-                    //					InsightStack(spacing: spacing, cardController: cardController)
                 }
                 .padding()
             }

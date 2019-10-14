@@ -63,8 +63,8 @@ struct CardInfo: View {
     }
 }
 
-struct CardInfo_Previews: PreviewProvider {
-    static var previews: some View {
-        CardInfo(graphStyle: 0, spacing: 20)
-    }
-}
+//struct CardInfo_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardInfo(graphStyle: 0, spacing: 20)
+//    }
+//}
