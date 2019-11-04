@@ -14,10 +14,10 @@ class EntryStats {
     let ratingRange: Range<Double>
     let factorTypes: [FactorType]
     
-    init(name: String, ratingCount: Int, ratingRange: Range<Double>, factorTypes: [FactorType]) {
+    init(name: String, ratingCount: Int, ratingRange: ClosedRange<Double>, factorTypes: [FactorType]) {
         self.name = name
         self.ratingCount = ratingCount
-        self.ratingRange = ratingRange
+        self.ratingRange = ratingRange.lowerBound..<ratingRange.upperBound + 1
         self.factorTypes = factorTypes
     }
 }

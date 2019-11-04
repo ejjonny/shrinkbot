@@ -19,7 +19,7 @@ struct Home: View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: spacing) {
-                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, spacing: spacing)
+                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, cardController: CardController.shared, spacing: spacing)
                 }
                 .padding()
             }
