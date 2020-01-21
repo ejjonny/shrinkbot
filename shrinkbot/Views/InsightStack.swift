@@ -21,7 +21,6 @@ struct InsightStack: View {
         }
     }
     func loadInsights() {
-        
     }
 }
 

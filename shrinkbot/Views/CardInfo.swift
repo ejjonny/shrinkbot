@@ -52,7 +52,7 @@ struct CardInfo: View {
             .padding(15)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Rating.good.color().opacity(0.5))
+                    .foregroundColor(Color("Standard"))
             )
             Picker("Dates??", selection: $pickerInt) {
                 ForEach(0..<graphOptions.count, id: \.self) { index in
@@ -61,8 +61,8 @@ struct CardInfo: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .zIndex(1)
-            GraphView(data: currentCardData())
-                .frame(height: 250)
+//            GraphView(data: currentCardData())
+//                .frame(height: 250)
         }
     }
     

@@ -40,9 +40,6 @@ struct GraphView: View {
     }
     func rangeAt(_ index: Int) -> Range<Double> {
         let range = data[index]
-        guard !range.isEmpty else {
-            return range.lowerBound * 0.8..<range.lowerBound * 0.8 + 0.8
-        }
         return range
     }
 }

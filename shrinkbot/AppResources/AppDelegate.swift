@@ -16,9 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         CoreDataManager.loadFromPersistentStore()
-        requestAuth { (granted) in
-            print("Notification authorization granted")
-        }
+        requestAuth { _ in }
         return true
     }
     

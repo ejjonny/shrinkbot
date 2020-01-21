@@ -14,7 +14,7 @@ struct GraphCapsule: View {
     var overallRange: Range<Double>
     
     var heightRatio: CGFloat {
-        CGFloat(magnitude(of: range) / magnitude(of: overallRange))
+        max(CGFloat(magnitude(of: range) / magnitude(of: overallRange)), 1 / 5)
     }
     var offset: CGFloat {
         CGFloat(range.lowerBound - overallRange.lowerBound) / CGFloat(magnitude(of: overallRange))
@@ -25,9 +25,9 @@ struct GraphCapsule: View {
     }
     var body: some View {
         Capsule()
-            .frame(height: height * heightRatio)
-            .offset(x: 0, y: height * -offset)
-            .animation(.laggySpring(index: index))
+            .frame(height: self.height * self.heightRatio)
+            .offset(y: self.height * -self.offset)
+            .animation(.laggySpring(index: self.index))
     }
 }
 

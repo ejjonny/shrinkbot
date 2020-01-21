@@ -60,7 +60,7 @@ struct EntryButton: View {
     var body: some View {
         return ZStack {
             Capsule()
-                .stroke(Color.black.opacity(strokeOpacity), lineWidth: lineWidth)
+                .stroke(Color("Standard"), lineWidth: lineWidth)
                 .frame(width: self.controlWidth, height: self.controlHeight + bloat - (expanded ? 40 : 0))
             GeometryReader { proxy in
                 Image(self.selection?.imageString() ?? "GI")
@@ -116,7 +116,7 @@ struct EntryButton: View {
                 HStack {
                     ForEach(1...5, id: \.self) { _ in
                         Circle()
-                            .foregroundColor(Color.black.opacity(0.05))
+                            .foregroundColor(Color("LowContrast"))
                     }
                 }
                 .transition(.scale)

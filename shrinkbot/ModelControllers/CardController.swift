@@ -23,6 +23,7 @@ class CardController: ObservableObject {
     
     func refreshActiveCard() {
         activeCard = findActiveCard()
+        refreshActiveCardEntries()
     }
     
     func findActiveCard() -> Card {

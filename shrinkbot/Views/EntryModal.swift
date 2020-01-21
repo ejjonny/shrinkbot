@@ -15,26 +15,26 @@ struct EntryModal: View {
     @Binding var expanded: Bool
     @Binding var xOffset: CGFloat
     var factorTypes = [FactorType]()
-    var selectionColor: Color {
-        switch selection {
-        case .realBad:
-            return Color(red: 141 / 255, green: 170 / 255, blue: 204 / 255)
-        case .bad:
-            return Color(red: 172 / 255, green: 200 / 255, blue: 233 / 255)
-        case .meh:
-            return Color(red: 232 / 255, green: 232 / 255, blue: 232 / 255)
-        case .good:
-            return Color(red: 206 / 255, green: 228 / 255, blue: 253 / 255)
-        case .realGood:
-            return Color(red: 229 / 255, green: 241 / 255, blue: 254 / 255)
-        case .none:
-            return Color.clear
-        }
-    }
+//    var selectionColor: Color {
+//        switch selection {
+//        case .realBad:
+//            return Color(red: 141 / 255, green: 170 / 255, blue: 204 / 255)
+//        case .bad:
+//            return Color(red: 172 / 255, green: 200 / 255, blue: 233 / 255)
+//        case .meh:
+//            return Color(red: 232 / 255, green: 232 / 255, blue: 232 / 255)
+//        case .good:
+//            return Color(red: 206 / 255, green: 228 / 255, blue: 253 / 255)
+//        case .realGood:
+//            return Color(red: 229 / 255, green: 241 / 255, blue: 254 / 255)
+//        case .none:
+//            return Color.clear
+//        }
+//    }
     var body: some View {
         VStack {
             Rectangle()
-                .foregroundColor(selectionColor)
+                .foregroundColor(Color("Standard"))
                 .frame(height: 20)
             Text("Add factors to your journal entry")
                 .font(.system(size: 25, weight: Font.Weight.medium))
@@ -52,12 +52,11 @@ struct EntryModal: View {
                         }) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(self.selectionColor)
+                                    .foregroundColor(Color("Standard"))
                                     .shadow(color: Color.black.opacity(0.2), radius: 10, y: 10)
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.black, lineWidth: self.selectedIndexes.contains(index) ? 8 : 0)
+                                    .stroke(lineWidth: self.selectedIndexes.contains(index) ? 8 : 0)
                                 Text(self.factorTypes[index].name!)
-                                    .foregroundColor(.black)
                                     .font(.system(size: 20))
                             }
                             .frame(height: 100)
@@ -77,9 +76,9 @@ struct EntryModal: View {
             }) {
                 ZStack {
                     Circle()
-                        .foregroundColor(selectionColor)
+                        .foregroundColor(Color("Standard"))
                     Circle()
-                        .stroke(Color.black, lineWidth: 8)
+                        .stroke(lineWidth: 8)
                     Image(systemName: "checkmark")
                         .resizable()
                         .scaledToFit()

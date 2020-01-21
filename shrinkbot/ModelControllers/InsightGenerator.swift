@@ -8,8 +8,9 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
-class InsightGenerator {
+class InsightGenerator: ObservableObject {
     
     static let shared = InsightGenerator()
     var cardName = ""
