@@ -76,13 +76,13 @@ struct EntryModal: View {
             }) {
                 ZStack {
                     Circle()
-                        .foregroundColor(Color("Standard"))
+                        .foregroundColor(Color("LowContrast"))
                     Circle()
-                        .stroke(lineWidth: 8)
+                        .stroke(Color("Standard"), lineWidth: 8)
                     Image(systemName: "checkmark")
                         .resizable()
                         .scaledToFit()
-                        .accentColor(.black)
+                        .accentColor(Color("Standard"))
                         .font(.system(size: 10, weight: .heavy, design: .rounded))
                         .padding(35)
                 }
@@ -90,19 +90,9 @@ struct EntryModal: View {
             .buttonStyle(BubbleButton())
             .frame(width: 100, height: 100)
             .padding()
+            .padding([.bottom], 30)
         }
+        .background(Color("Background"))
+        .edgesIgnoringSafeArea([.bottom])
     }
 }
-
-//struct EntryModal_Previews: PreviewProvider {
-//	static let card = Card(name: "yep")
-//	static let factorTypes = [
-//		FactorType(name: "dick", card: card),
-//		FactorType(name: "salsa", card: card),
-//		FactorType(name: "Chimi chonga", card: card)
-//	]
-//    static var previews: some View {
-//		EntryModal(showModal: .constant(false), factorTypes: factorTypes, selection: .meh)
-//    }
-//}
-

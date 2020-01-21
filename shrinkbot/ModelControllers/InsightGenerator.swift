@@ -14,11 +14,12 @@ class InsightGenerator: ObservableObject {
     
     static let shared = InsightGenerator()
     var cardName = ""
+    @Published var insights = [Insight]()
     
-    func generate(completion: @escaping ([Insight]) -> Void) {
+    func generate(completion: (([Insight]) -> Void)? = nil) {
         let mainEntries = CardController.shared.activeCardEntries
         cardName = CardController.shared.activeCard?.name ?? ""
-        guard mainEntries.count > 10 else { completion([]) ; return  }
+        guard mainEntries.count > 10 else { completion?([]) ; return  }
         DispatchQueue.global().async {
             let tmpContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
             tmpContext.parent = CoreDataStack.context
@@ -29,7 +30,8 @@ class InsightGenerator: ObservableObject {
             insights.append(contentsOf: self.getMainProgress(entries: tmpEntries))
             let filteredByScore = insights.filter{ $0.score > 20 }
             DispatchQueue.main.async {
-                completion(filteredByScore)
+                insights = filteredByScore
+                completion?(filteredByScore)
             }
         }
     }
