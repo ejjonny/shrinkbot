@@ -173,7 +173,7 @@ class CardController: ObservableObject {
                 name = dateFormat(date)()
             }
             var markTypes = [FactorType]()
-            group.forEach{
+            group.forEach {
                 let marksArray = $0.factorMarks?.array as! [FactorMark]
                 for mark in marksArray {
                     guard let type = mark.type,
@@ -184,7 +184,7 @@ class CardController: ObservableObject {
             // This filters out entries saved with only a factor & no rating so that data isn't skewed.
             let ratings = group.map { $0.rating }
             if let upperBound = ratings.max(), let lowerBound = ratings.min() {
-                let stat = EntryStats(name: name, ratingCount: group.count, ratingRange: lowerBound..<upperBound, factorTypes: markTypes)
+                let stat = EntryStats(name: name, ratingCount: group.count, ratingRange: lowerBound...upperBound, factorTypes: markTypes)
                 stats.append(stat)
             }
         }
@@ -211,7 +211,7 @@ class CardController: ObservableObject {
                 break
             }
             if let upperBound = ratings.max(), let lowerBound = ratings.min() {
-                stats.append(EntryStats(name: name, ratingCount: group.count, ratingRange: lowerBound..<upperBound, factorTypes: []))
+                stats.append(EntryStats(name: name, ratingCount: group.count, ratingRange: lowerBound...upperBound, factorTypes: []))
             }
         }
         return stats.reversed()

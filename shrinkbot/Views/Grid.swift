@@ -9,13 +9,13 @@ import SwiftUI
 
 struct Grid: View {
     var yCount: Int
-    var xCount: Range<Int>
+    var xCount: Int
     var height: CGFloat
     var width: CGFloat
     var body: some View {
         ZStack {
             VStack {
-                ForEach(0...yCount, id: \.self) { _ in
+                ForEach(0..<yCount, id: \.self) { _ in
                     VStack {
                         Spacer(minLength: 0)
                         Rectangle()
@@ -26,7 +26,7 @@ struct Grid: View {
                 }
             }
             HStack {
-                ForEach(xCount, id: \.self) { index in
+                ForEach(0..<xCount, id: \.self) { index in
                     HStack {
                         Spacer(minLength: 0)
                         Rectangle()
@@ -42,6 +42,9 @@ struct Grid: View {
 
 struct Grid_Previews: PreviewProvider {
     static var previews: some View {
-        Grid(yCount: 4, xCount: 0..<4, height: 200, width: 200)
+        Group {
+            Grid(yCount: 4, xCount: 4, height: 200, width: 200)
+            Grid(yCount: 1, xCount: 1, height: 200, width: 200)
+        }
     }
 }

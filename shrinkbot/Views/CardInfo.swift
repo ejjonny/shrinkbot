@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CardInfo: View {
     @State var pickerInt: Int
+    @ObservedObject var cardController: CardController
     var graphOptionSelection: GraphRangeOptions {
         GraphRangeOptions.allCases[pickerInt]
     }
@@ -19,7 +20,7 @@ struct CardInfo: View {
     var body: some View {
         VStack(spacing: spacing) {
             HStack {
-                Text(CardController.shared.activeCard?.name ?? "Card Name")
+                Text(cardController.activeCard?.name ?? "Card Name")
                     .font(.system(size: 25, weight: Font.Weight.medium))
                 Spacer()
                 HStack(spacing: 25) {
@@ -67,7 +68,7 @@ struct CardInfo: View {
     }
     
     func currentCardData() -> [Range<Double>] {
-        CardController.shared.entriesWith(graphViewStyle: graphOptionSelection).map { $0.ratingRange }
+        cardController.entriesWith(graphViewStyle: graphOptionSelection).map { $0.ratingRange }
     }
 }
 
