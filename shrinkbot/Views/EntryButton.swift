@@ -59,55 +59,64 @@ struct EntryButton: View {
     }
     var body: some View {
         return ZStack {
-            Capsule()
-                .stroke(Color("Standard"), lineWidth: lineWidth)
-                .frame(width: self.controlWidth, height: self.controlHeight + bloat - (expanded ? 40 : 0))
+            ZStack {
+                Capsule()
+                    .foregroundColor(Color("Background"))
+                Capsule()
+                    .stroke(Color("Standard"), lineWidth: lineWidth)
+            }
+            .frame(width: self.controlWidth, height: self.controlHeight + bloat - (expanded ? 40 : 0))
             GeometryReader { proxy in
-                Image(self.selection?.imageString() ?? "GI")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .offset(x: self.xOffset, y: self.expanded ? -self.controlHeight - self.bloat - 10 : 0)
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged{ value in
-                                // Splits control into 5 segments that the slider will snap to
-                                self.expanded = true
-                                let location = value.location.x - value.startLocation.x
-                                let sliderRangeMagnitude = proxy.size.width - self.controlHeight - self.bloat
-                                let eighthLength = sliderRangeMagnitude / 8
-                                if ((-eighthLength * 4)..<(-eighthLength * 3)).contains(location) {
-                                    self.selection = .realBad
-                                    self.xOffset = -sliderRangeMagnitude / 2
-                                } else if ((-eighthLength * 3)..<(-eighthLength)).contains(location) {
-                                    self.selection = .bad
-                                    self.xOffset = -sliderRangeMagnitude / 4
-                                } else if ((-eighthLength)..<(eighthLength)).contains(location) {
-                                    self.selection = .meh
-                                    self.xOffset = 0
-                                } else if ((eighthLength)..<(eighthLength * 3)).contains(location) {
-                                    self.selection = .good
-                                    self.xOffset = sliderRangeMagnitude / 4
-                                } else if ((eighthLength * 3)..<(eighthLength * 4)).contains(location) {
-                                    self.selection = .realGood
-                                    self.xOffset = sliderRangeMagnitude / 2
-                                }
-                                if value.location.y < -30, !self.hovering {
-                                    self.hovering = true
-                                } else if value.location.y > -30, self.hovering {
-                                    self.hovering = false
-                                }
-                        }
-                        .onEnded{ value in
-                            if !self.hovering {
-                                self.close()
-                            } else if self.selection != nil {
-                                self.bump(.rigid)
-                                self.modalPresenting = true
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                                    self.bump(.medium)
-                                }
+                ZStack {
+                    Circle()
+                        .foregroundColor(Color("Background"))
+                        .opacity(self.expanded ? 1 : 0)
+                    Image(self.selection?.imageString() ?? "GI")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
+                .offset(x: self.xOffset, y: self.expanded ? -self.controlHeight - self.bloat - 10 : 0)
+                .gesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged{ value in
+                            // Splits control into 5 segments that the slider will snap to
+                            self.expanded = true
+                            let location = value.location.x - value.startLocation.x
+                            let sliderRangeMagnitude = proxy.size.width - self.controlHeight - self.bloat
+                            let eighthLength = sliderRangeMagnitude / 8
+                            if ((-eighthLength * 4)..<(-eighthLength * 3)).contains(location) {
+                                self.selection = .realBad
+                                self.xOffset = -sliderRangeMagnitude / 2
+                            } else if ((-eighthLength * 3)..<(-eighthLength)).contains(location) {
+                                self.selection = .bad
+                                self.xOffset = -sliderRangeMagnitude / 4
+                            } else if ((-eighthLength)..<(eighthLength)).contains(location) {
+                                self.selection = .meh
+                                self.xOffset = 0
+                            } else if ((eighthLength)..<(eighthLength * 3)).contains(location) {
+                                self.selection = .good
+                                self.xOffset = sliderRangeMagnitude / 4
+                            } else if ((eighthLength * 3)..<(eighthLength * 4)).contains(location) {
+                                self.selection = .realGood
+                                self.xOffset = sliderRangeMagnitude / 2
+                            }
+                            if value.location.y < -30, !self.hovering {
+                                self.hovering = true
+                            } else if value.location.y > -30, self.hovering {
+                                self.hovering = false
+                            }
+                    }
+                    .onEnded{ value in
+                        if !self.hovering {
+                            self.close()
+                        } else if self.selection != nil {
+                            self.bump(.rigid)
+                            self.modalPresenting = true
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                                self.bump(.medium)
                             }
                         }
+                    }
                 )
             }
             .frame(height: self.controlHeight + (self.expanded ? 10 : -5) + (self.hovering ? 10 : 0), alignment: .center)

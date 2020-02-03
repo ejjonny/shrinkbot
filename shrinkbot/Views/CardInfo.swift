@@ -21,7 +21,7 @@ struct CardInfo: View {
         VStack(spacing: spacing) {
             HStack {
                 Text(cardController.activeCard?.name ?? "Card Name")
-                    .font(.system(size: 25, weight: Font.Weight.medium))
+                    .font(.system(size: 25, weight: .medium, design: .rounded))
                 Spacer()
                 HStack(spacing: 25) {
                     Button(action: {
@@ -62,8 +62,8 @@ struct CardInfo: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .zIndex(1)
-//            GraphView(data: currentCardData())
-//                .frame(height: 250)
+            GraphView(data: currentCardData())
+                .frame(height: 250)
         }
     }
     
@@ -71,9 +71,3 @@ struct CardInfo: View {
         cardController.entriesWith(graphViewStyle: graphOptionSelection).map { $0.ratingRange }
     }
 }
-
-//struct CardInfo_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardInfo(graphStyle: 0, spacing: 20)
-//    }
-//}

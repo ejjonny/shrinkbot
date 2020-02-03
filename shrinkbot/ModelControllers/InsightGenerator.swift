@@ -10,13 +10,26 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class InsightGenerator: ObservableObject {
+protocol InsightSource {
+    func generate(completion: (([Insight]) -> ())?)
+}
+
+class MockInsightGenerator: InsightSource {
+    func generate(completion: (([Insight]) -> ())?) {
+        let insights = [
+            Insight(title: "Nut", description: "bust", score: 20),
+            Insight(title: "No", description: "noddle for u", score: 50)
+        ]
+        completion?(insights)
+    }
+}
+
+class InsightGenerator: InsightSource {
     
     static let shared = InsightGenerator()
     var cardName = ""
-    @Published var insights = [Insight]()
     
-    func generate(completion: (([Insight]) -> Void)? = nil) {
+    func generate(completion: (([Insight]) -> ())? = nil) {
         let mainEntries = CardController.shared.activeCardEntries
         cardName = CardController.shared.activeCard?.name ?? ""
         guard mainEntries.count > 10 else { completion?([]) ; return  }
@@ -30,7 +43,6 @@ class InsightGenerator: ObservableObject {
             insights.append(contentsOf: self.getMainProgress(entries: tmpEntries))
             let filteredByScore = insights.filter{ $0.score > 20 }
             DispatchQueue.main.async {
-                insights = filteredByScore
                 completion?(filteredByScore)
             }
         }
