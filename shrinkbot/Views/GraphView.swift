@@ -8,45 +8,43 @@
 import SwiftUI
 
 struct GraphView: View {
-    var data: [Range<Double>]
-    var rangeOfData: Range<Double> {
-        guard !data.isEmpty else { return 0..<1 }
-        let low = data.lazy.map { $0.lowerBound }.min()!
-        let high = data.lazy.map { $0.upperBound }.max()!
-        return low..<high
-    }
+    var data: [Double]
+    let range = 5
     
     var body: some View {
-        let overallRange = rangeOfData
         return GeometryReader { geometry in
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Rating.good.color().opacity(0.5))
-                Grid(yCount: Int(overallRange.upperBound.rounded() + 1), xCount: self.data.indices.count, height: geometry.size.height, width: geometry.size.width)
-                    .padding(8)
-//                HStack(spacing: CGFloat(10 / max(CGFloat(self.data.count), 0.1))) {
-//                    ForEach(self.data.indices, id: \.self) { index in
-//                        HStack {
-//                            Spacer(minLength: 0)
-//                            GraphCapsule(index: index, height: geometry.size.height, range: self.rangeAt(index), overallRange: overallRange)
-//                            Spacer(minLength: 0)
-//                        }
-//                        .frame(height: geometry.size.height, alignment: .bottom)
-//                    }
-//                }
-//                .padding(8)
+                    .foregroundColor(Color("LowContrast"))
+//                Grid(yCount: self.range, xCount: self.data.indices.count, height: geometry.size.height, width: geometry.size.width)
+//                    .padding(8)
+                ForEach(self.data.indices, id: \.self) { index in
+                        ZStack {
+                            GeometryReader { proxy in
+                            Circle()
+                                .frame(width: 20, height: 20)
+                                .position(
+                                    x: self.xOffset(index: index, width: proxy.size.width),
+                                    y: self.yOffset(index: index, height: proxy.size.height)
+                            )
+                        }
+                    }
+                        .padding(8)
+                }
             }
         }
     }
-    func rangeAt(_ index: Int) -> Range<Double> {
-        let range = data[index]
-        return range
+    
+    func xOffset(index: Int, width: CGFloat) -> CGFloat {
+        (((width - 16) / CGFloat(data.count + 1)) * CGFloat(index + 1)) + 8
+    }
+    func yOffset(index: Int, height: CGFloat) -> CGFloat {
+        height - 8 - (((height - 16) / CGFloat(range)) * CGFloat(self.data[index]))
     }
 }
 
-let testData: [Range<Double>] = [0.0..<0.0, 1.0..<1.0]
-//, 2.0..<3.0, 3.0..<4.0, 4.0..<5.0, 2.0..<4.0, 1.0..<5.0, 0.0..<2.8, 4.8..<5.0, 2.0..<2.5, 2.0..<3.5, 4.2..<5.0, 1.0..<5.0]
-let newTestData: [Range<Double>] = [0.0..<2.8, 3.99..<4.0, 2.0..<2.5, 2.0..<3.5, 4.0..<4.0, 1.0..<4.0]
+let testData: [Double] = [0.0, 1.0]
+let newTestData: [Double] = [2.8, 4.0, 2.5, 3.5, 4.0, 4.0]
 
 struct GraphView_Previews: PreviewProvider {
     static var previews: some View {

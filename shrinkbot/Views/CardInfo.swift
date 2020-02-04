@@ -67,7 +67,7 @@ struct CardInfo: View {
         }
     }
     
-    func currentCardData() -> [Range<Double>] {
-        cardController.entriesWith(graphViewStyle: graphOptionSelection).map { $0.ratingRange }
+    func currentCardData() -> [Double] {
+        cardController.entriesWith(graphViewStyle: graphOptionSelection).map { $0.averageRating }
     }
 }

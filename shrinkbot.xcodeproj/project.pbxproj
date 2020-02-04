@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CAAD4A972349DA7700CA72B1 /* GraphCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A962349DA7700CA72B1 /* GraphCapsule.swift */; };
 		CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A982349DA7D00CA72B1 /* GraphView.swift */; };
 		CAAD4A9B2349DA7D00CA72B1 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A992349DA7D00CA72B1 /* Grid.swift */; };
 		CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CAAD4A962349DA7700CA72B1 /* GraphCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphCapsule.swift; sourceTree = "<group>"; };
 		CAAD4A982349DA7D00CA72B1 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		CAAD4A992349DA7D00CA72B1 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleButton.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				CAE09AF823458CF500370FAD /* EntryModal.swift */,
 				CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */,
 				CAE09AF62345873100370FAD /* EntryButton.swift */,
-				CAAD4A962349DA7700CA72B1 /* GraphCapsule.swift */,
 				CAAD4A992349DA7D00CA72B1 /* Grid.swift */,
 				CAAD4A982349DA7D00CA72B1 /* GraphView.swift */,
 			);
@@ -300,7 +297,6 @@
 				CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */,
 				CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */,
 				CAE09B492345936700370FAD /* DateAsString.swift in Sources */,
-				CAAD4A972349DA7700CA72B1 /* GraphCapsule.swift in Sources */,
 				CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */,
 				CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */,
 				CAF8D0D7234D851800A5D2AA /* CardInfo.swift in Sources */,

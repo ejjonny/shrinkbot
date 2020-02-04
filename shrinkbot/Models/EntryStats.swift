@@ -11,13 +11,13 @@ import Foundation
 class EntryStats {
     let name: String
     let ratingCount: Int
-    let ratingRange: Range<Double>
+    let averageRating: Double
     let factorTypes: [FactorType]
     
-    init(name: String, ratingCount: Int, ratingRange: ClosedRange<Double>, factorTypes: [FactorType]) {
+    init(name: String, ratingCount: Int, averageRating: Double, factorTypes: [FactorType]) {
         self.name = name
         self.ratingCount = ratingCount
-        self.ratingRange = ratingRange.lowerBound..<ratingRange.upperBound + 1
+        self.averageRating = averageRating
         self.factorTypes = factorTypes
     }
 }
@@ -25,6 +25,6 @@ class EntryStats {
 extension EntryStats: Equatable {
     
     static func == (lhs: EntryStats, rhs: EntryStats) -> Bool {
-        return lhs.name == rhs.name && lhs.ratingRange == rhs.ratingRange && lhs.ratingCount == rhs.ratingCount && lhs.factorTypes == rhs.factorTypes
+        return lhs.name == rhs.name && lhs.averageRating == rhs.averageRating && lhs.ratingCount == rhs.ratingCount && lhs.factorTypes == rhs.factorTypes
     }
 }
