@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */; };
+		CA0AF38323ED35B8000F8C15 /* VerticalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */; };
 		CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A982349DA7D00CA72B1 /* GraphView.swift */; };
-		CAAD4A9B2349DA7D00CA72B1 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A992349DA7D00CA72B1 /* Grid.swift */; };
 		CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */; };
 		CABDBDCA2341A34500090FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDC92341A34500090FB3 /* AppDelegate.swift */; };
 		CABDBDCC2341A34500090FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */; };
@@ -42,8 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLines.swift; sourceTree = "<group>"; };
+		CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLines.swift; sourceTree = "<group>"; };
 		CAAD4A982349DA7D00CA72B1 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
-		CAAD4A992349DA7D00CA72B1 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleButton.swift; sourceTree = "<group>"; };
 		CABDBDC62341A34500090FB3 /* shrinkbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shrinkbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABDBDC92341A34500090FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -203,8 +205,9 @@
 				CAE09AF823458CF500370FAD /* EntryModal.swift */,
 				CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */,
 				CAE09AF62345873100370FAD /* EntryButton.swift */,
-				CAAD4A992349DA7D00CA72B1 /* Grid.swift */,
 				CAAD4A982349DA7D00CA72B1 /* GraphView.swift */,
+				CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */,
+				CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,13 +303,14 @@
 				CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */,
 				CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */,
 				CAF8D0D7234D851800A5D2AA /* CardInfo.swift in Sources */,
-				CAAD4A9B2349DA7D00CA72B1 /* Grid.swift in Sources */,
 				CAE09AF523442C8000370FAD /* Extensions.swift in Sources */,
+				CA0AF38323ED35B8000F8C15 /* VerticalLines.swift in Sources */,
 				CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */,
 				CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */,
 				CAE09B45234592EE00370FAD /* CardController.swift in Sources */,
 				CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */,
 				CAE09B3E234591A700370FAD /* shrinkbot.xcdatamodeld in Sources */,
+				CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */,
 				CAE09B1423458ED300370FAD /* Insight.swift in Sources */,
 				CAE09B0423458EB400370FAD /* Constants.swift in Sources */,
 			);

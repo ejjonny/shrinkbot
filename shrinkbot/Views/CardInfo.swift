@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CardInfo: View {
     @State var pickerInt: Int
+    @State var detailPopup: Int?
     @ObservedObject var cardController: CardController
     var graphOptionSelection: GraphRangeOptions {
         GraphRangeOptions.allCases[pickerInt]
@@ -18,7 +19,13 @@ struct CardInfo: View {
     var spacing: CGFloat
     
     var body: some View {
-        VStack(spacing: spacing) {
+        let binding = Binding(get: {
+            self.pickerInt
+        }) { newValue in
+            self.pickerInt = newValue
+            self.detailPopup = nil // Clear the detail popup on the graph
+        }
+        return VStack(spacing: spacing) {
             HStack {
                 Text(cardController.activeCard?.name ?? "Card Name")
                     .font(.system(size: 25, weight: .medium, design: .rounded))
@@ -55,19 +62,16 @@ struct CardInfo: View {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color("Standard"))
             )
-            Picker("Dates??", selection: $pickerInt) {
+            Picker("Dates??", selection: binding) {
                 ForEach(0..<graphOptions.count, id: \.self) { index in
                     Text(self.graphOptions[index].rawValue).tag(index)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
             .zIndex(1)
-            GraphView(data: currentCardData())
+            GraphView(stats: cardController.entriesWith(graphViewStyle: graphOptionSelection), detailPopup: $detailPopup)
                 .frame(height: 250)
+                .animation(.shrinkbotSpring())
         }
-    }
-    
-    func currentCardData() -> [Double] {
-        cardController.entriesWith(graphViewStyle: graphOptionSelection).map { $0.averageRating }
     }
 }

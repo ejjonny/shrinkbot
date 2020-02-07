@@ -26,7 +26,7 @@ struct Home: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: spacing) {
                     CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, cardController: CardController.shared, spacing: spacing)
-                    InsightSegment(insightGenerator: MockInsightGenerator(), spacing: spacing)
+                    InsightSegment(insightGenerator: InsightGenerator(), spacing: spacing)
                 }
                 .padding()
             }

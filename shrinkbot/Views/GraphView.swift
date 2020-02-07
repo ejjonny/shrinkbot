@@ -8,49 +8,69 @@
 import SwiftUI
 
 struct GraphView: View {
-    var data: [Double]
+    var stats: [EntryStats]
+    var data: [Double] {
+        stats.map { $0.averageRating }
+    }
     let range = 5
+    @Binding var detailPopup: Int?
     
     var body: some View {
-        return GeometryReader { geometry in
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color("LowContrast"))
-//                Grid(yCount: self.range, xCount: self.data.indices.count, height: geometry.size.height, width: geometry.size.width)
-//                    .padding(8)
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(Color("LowContrast"))
+            // Horizontal graph lines
+            HorizontalLines(graphPadding: self.graphPadding, yOffset: self.yOffset, range: self.range)
+            // Vertical graph lines
+            VerticalLines(graphPadding: self.graphPadding, xOffset: self.xOffset, indices: self.data.indices)
+            // Data points
+            GeometryReader { proxy in
                 ForEach(self.data.indices, id: \.self) { index in
+                    Button(action: {
+                        self.detailPopup = index
+                    }) {
                         ZStack {
-                            GeometryReader { proxy in
                             Circle()
-                                .frame(width: 20, height: 20)
-                                .position(
-                                    x: self.xOffset(index: index, width: proxy.size.width),
-                                    y: self.yOffset(index: index, height: proxy.size.height)
-                            )
+                                .foregroundColor(Color("Standard"))
+                                .frame(width: index == self.detailPopup ? 30 : 20, height: index == self.detailPopup ? 30 : 20)
+                            Circle()
+                                .foregroundColor(Color("LowContrast"))
+                                .frame(width: index == self.detailPopup ? 25 : 15, height: index == self.detailPopup ?  25 : 15)
+                            Circle()
+                                .foregroundColor(Color("Highlight"))
+                                .frame(width: 10, height: 10)
                         }
                     }
-                        .padding(8)
+                    .position(
+                        x: self.xOffset(index: index, width: proxy.size.width),
+                        y: self.yOffset(height: proxy.size.height, value: self.data[index])
+                    )
+                }
+            }
+            if detailPopup != nil {
+                VStack {
+                    HStack {
+                        Text("\(stats[detailPopup!].name)")
+                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                        Text(String(format: "Avg: %.2f", stats[detailPopup!].averageRating))
+                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                        Text("\(stats[detailPopup!].ratingCount) \(stats[detailPopup!].ratingCount == 1 ? "entry" : "entries")")
+                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                    }
+                    .animation(nil)
+                    .frame(height: 20)
+                    Spacer()
                 }
             }
         }
     }
     
+    let graphPadding: CGFloat = 60.0
+    
     func xOffset(index: Int, width: CGFloat) -> CGFloat {
-        (((width - 16) / CGFloat(data.count + 1)) * CGFloat(index + 1)) + 8
+        (((width - graphPadding) / CGFloat(data.count + 1)) * CGFloat(index + 1)) + (graphPadding / 2)
     }
-    func yOffset(index: Int, height: CGFloat) -> CGFloat {
-        height - 8 - (((height - 16) / CGFloat(range)) * CGFloat(self.data[index]))
-    }
-}
-
-let testData: [Double] = [0.0, 1.0]
-let newTestData: [Double] = [2.8, 4.0, 2.5, 3.5, 4.0, 4.0]
-
-struct GraphView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GraphView(data: testData)
-            GraphView(data: newTestData)
-        }
+    func yOffset(height: CGFloat, value: Double) -> CGFloat {
+        height - (graphPadding / 2) - (((height - graphPadding) / CGFloat(range - 1)) * CGFloat(value))
     }
 }
