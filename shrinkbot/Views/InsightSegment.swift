@@ -21,6 +21,7 @@ struct InsightSegment<Source>: View where Source: InsightSource {
     }
     @State var animate = false
     @State var insights: [Insight] = []
+    @State var insightsTapped = false
     var insightGenerator: Source
     var displayString: String {
         switch buttonState {
@@ -55,14 +56,24 @@ struct InsightSegment<Source>: View where Source: InsightSource {
             if !insights.isEmpty {
                 Spacer(minLength: spacing)
             }
+            if insightsTapped && insights.isEmpty {
+                Text("No insights yet.. keep recording data or try again")
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundColor(Color("Standard"))
+                Spacer(minLength: spacing)
+            }
             Button(action: {
                 if self.buttonState == .waitingForPress || self.buttonState == .waitingForRefresh {
                     self.buttonState = .loading
                     self.insights = []
                     self.insightGenerator.generate { insights in
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
                             self.insights = insights
                             self.buttonState = .done
+                            self.insightsTapped = true
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+                                self.insightsTapped = false
+                            }
                         }
                     }
                 }
@@ -109,35 +120,6 @@ struct InsightSegment<Source>: View where Source: InsightSource {
                 .frame(width: buttonWidth, height: 40)
             }
             .animation(.default)
-        }
-    }
-}
-
-
-struct InsightStack: View {
-    @Binding var insights: [Insight]
-    let spacing: CGFloat
-    func transition(delay: Int) -> AnyTransition {
-        let animation = Animation.shrinkbotSpring().delay(0.1 * Double(delay))
-        let scale = AnyTransition.scale.animation(animation)
-        return AnyTransition.opacity.combined(with: scale).animation(animation)
-    }
-    var body: some View {
-        VStack(spacing: spacing) {
-            ForEach(insights.indices, id: \.self) { index in
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(Color("Standard"))
-                        .frame(height: 100)
-                    VStack {
-                        Text(self.insights[index].title)
-                            .multilineTextAlignment(.leading)
-                        Text(self.insights[index].description)
-                    }
-                    .padding()
-                }
-                .transition(self.transition(delay: index))
-            }
         }
     }
 }

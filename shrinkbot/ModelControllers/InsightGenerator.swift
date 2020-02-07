@@ -16,10 +16,10 @@ protocol InsightSource {
 
 class MockInsightGenerator: InsightSource {
     func generate(completion: (([Insight]) -> ())?) {
-        let insights = [
-            Insight(title: "This will be", description: "insightful and awesome", score: 20),
-            Insight(title: "No", description: "noddle for u", score: 50),
-            Insight(title: "go go go go", description: "gadget", score: 20)
+        let insights: [Insight] = [
+//            Insight(title: "This will be", description: "insightful and awesome", score: 20),
+//            Insight(title: "No", description: "noddle for u", score: 50),
+//            Insight(title: "go go go go", description: "gadget", score: 20)
         ]
         completion?(insights)
     }
