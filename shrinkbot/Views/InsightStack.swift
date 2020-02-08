@@ -27,15 +27,15 @@ struct InsightStack: View {
                     VStack {
                         HStack {
                             Text(self.insights[index].title)
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .defaultFont(16, weight: .bold)
                             Spacer()
                             Text(String(format: "%.2f", self.insights[index].score))
                                 .foregroundColor(Color("Highlight").opacity(0.3))
-                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                .defaultFont(16, weight: .bold)
                         }
                         Divider()
                         Text(self.insights[index].description)
-                            .font(.system(size: 15, weight: Font.Weight.regular, design: .rounded))
+                            .defaultFont(15, weight: .regular)
                     }
                     .padding()
                 }

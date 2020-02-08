@@ -10,8 +10,9 @@ import SwiftUI
 
 struct CardInfo: View {
     @State var pickerInt: Int
-    @State var detailPopup: Int?
+    @Binding var detailPopup: Int?
     @ObservedObject var cardController: CardController
+    @State var cardModalPresenting = false
     var graphOptionSelection: GraphRangeOptions {
         GraphRangeOptions.allCases[pickerInt]
     }
@@ -27,8 +28,13 @@ struct CardInfo: View {
         }
         return VStack(spacing: spacing) {
             HStack {
-                Text(cardController.activeCard?.name ?? "Card Name")
-                    .font(.system(size: 25, weight: .medium, design: .rounded))
+                Button(action: {
+                    self.cardModalPresenting = true
+                }) {
+                    Text(cardController.activeCard?.name ?? "Card Name")
+                        .defaultFont(25)
+                        .foregroundColor(Color("Highlight"))
+                }
                 Spacer()
                 HStack(spacing: 25) {
                     Button(action: {
@@ -72,6 +78,12 @@ struct CardInfo: View {
             GraphView(stats: cardController.entriesWith(graphViewStyle: graphOptionSelection), detailPopup: $detailPopup)
                 .frame(height: 250)
                 .animation(.shrinkbotSpring())
+                .drawingGroup()
+        }
+        .sheet(isPresented: $cardModalPresenting, onDismiss: {
+            print("dismissed")
+        }) {
+            CardModal(cardController: self.cardController)
         }
     }
 }

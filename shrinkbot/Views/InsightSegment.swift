@@ -58,7 +58,7 @@ struct InsightSegment<Source>: View where Source: InsightSource {
             }
             if insightsTapped && insights.isEmpty {
                 Text("No insights yet.. keep recording data or try again")
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .defaultFont(12)
                     .foregroundColor(Color("Standard"))
                 Spacer(minLength: spacing)
             }
@@ -102,7 +102,7 @@ struct InsightSegment<Source>: View where Source: InsightSource {
                         if buttonState == .waitingForPress || buttonState == .done {
                             Text(displayString)
                                 .foregroundColor(Color("Highlight"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .defaultFont(14, weight: .bold)
                                 .transition(.opacity)
                                 .padding()
                         }
@@ -111,7 +111,7 @@ struct InsightSegment<Source>: View where Source: InsightSource {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(Color("Highlight"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .defaultFont(14, weight: .bold)
                                 .frame(width: 20, height: 20)
                                 .padding()
                         }

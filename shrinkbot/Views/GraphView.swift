@@ -27,7 +27,11 @@ struct GraphView: View {
             GeometryReader { proxy in
                 ForEach(self.data.indices, id: \.self) { index in
                     Button(action: {
-                        self.detailPopup = index
+                        if self.detailPopup == index {
+                            self.detailPopup = nil
+                        } else {
+                            self.detailPopup = index
+                        }
                     }) {
                         ZStack {
                             Circle()
@@ -51,11 +55,11 @@ struct GraphView: View {
                 VStack {
                     HStack {
                         Text("\(stats[detailPopup!].name)")
-                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                            .defaultFont(10)
                         Text(String(format: "Avg: %.2f", stats[detailPopup!].averageRating))
-                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                            .defaultFont(10)
                         Text("\(stats[detailPopup!].ratingCount) \(stats[detailPopup!].ratingCount == 1 ? "entry" : "entries")")
-                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                            .defaultFont(10)
                     }
                     .animation(nil)
                     .frame(height: 20)

@@ -13,8 +13,9 @@ import Combine
 struct Home: View {
     @State var showModal = false
     @ObservedObject var cardController: CardController
-    @EnvironmentObject var buttonState: ButtonState
     @State var insightsState: InsightsState = .hidden
+    @State var buttonExpanded: Bool = false
+    @State var detailPopup: Int?
     enum InsightsState {
         case hidden
         case loading
@@ -22,20 +23,21 @@ struct Home: View {
     }
     let spacing: CGFloat = 20
     var body: some View {
-        VStack {
+        let binding = Binding(get: {
+            self.buttonExpanded
+        }) { newValue in
+            self.buttonExpanded = newValue
+            self.detailPopup = nil
+        }
+        return VStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: spacing) {
-                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, cardController: CardController.shared, spacing: spacing)
+                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, detailPopup: $detailPopup, cardController: CardController.shared, spacing: spacing)
                     InsightSegment(insightGenerator: InsightGenerator(), spacing: spacing)
                 }
                 .padding()
             }
-            EntryButton()
+            EntryButton(expanded: binding)
         }
     }
-}
-
-class ButtonState: ObservableObject {
-    @Published var open: Bool = false
-    @Published var selection: Rating?
 }

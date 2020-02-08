@@ -37,7 +37,7 @@ struct EntryModal: View {
                 .foregroundColor(Color("Standard"))
                 .frame(height: 20)
             Text("Add factors to your journal entry")
-                .font(.system(size: 25, weight: Font.Weight.medium))
+                .defaultFont(25)
                 .frame(height: 70, alignment: .center)
             ZStack {
                 ScrollView([.vertical], showsIndicators: false) {
@@ -57,7 +57,7 @@ struct EntryModal: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(lineWidth: self.selectedIndexes.contains(index) ? 8 : 0)
                                 Text(self.factorTypes[index].name!)
-                                    .font(.system(size: 20))
+                                    .defaultFont(12)
                             }
                             .frame(height: 100)
                             .padding()
@@ -83,7 +83,7 @@ struct EntryModal: View {
                         .resizable()
                         .scaledToFit()
                         .accentColor(Color("Standard"))
-                        .font(.system(size: 10, weight: .heavy, design: .rounded))
+                        .defaultFont(10, weight: .heavy)
                         .padding(35)
                 }
             }

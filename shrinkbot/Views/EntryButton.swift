@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct EntryButton: View {
-    @State var expanded: Bool = false
+    @Binding var expanded: Bool
     @State var xOffset: CGFloat = 0
     @State var selection: Rating? {
         didSet {
@@ -156,21 +156,5 @@ struct EntryButton: View {
     
     func bump(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
         UIImpactFeedbackGenerator(style: style).impactOccurred()
-    }
-}
-
-
-struct EntryButton_Previews: PreviewProvider {
-    static var selected: Rating?
-    static var selectedBinding = Binding(get: { selected }) { selected = $0 }
-    static var previews: some View {
-        EntryButton()
-    }
-}
-
-extension Animation {
-    static func shrinkbotSpring() -> Animation {
-        Animation.spring(dampingFraction: 0.5)
-            .speed(3)
     }
 }
