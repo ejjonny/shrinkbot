@@ -29,3 +29,9 @@ extension Card {
         }
     }
 }
+
+extension Card: Identifiable {
+    public var id: UUID {
+        self.uuid!
+    }
+}

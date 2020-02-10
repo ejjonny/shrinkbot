@@ -36,15 +36,23 @@ extension Animation {
 
 struct OpenTextField: UIViewRepresentable {
     @Binding var text: String
+    @Binding var shouldBeFirstResponder: Bool
     var onChanged: ((String) -> ())?
     var onCommit: (() -> ())?
     var placeHolder: String
+    var fontSize: CGFloat
+    var weight: Font.Weight
+    var initialValue: String
     
-    init(_ placeHolder: String, text: Binding<String>, onChanged: ((String) -> ())? = nil, onCommit: (() -> ())? = nil) {
+    init(_ placeHolder: String = "", initialValue: String = "", fontSize: CGFloat = 13, weight: Font.Weight = .regular, text: Binding<String>, shouldBeFirstResponder: Binding<Bool> = Binding(get: { false }, set: { newValue in }), onChanged: ((String) -> ())? = nil, onCommit: (() -> ())? = nil) {
         self.onChanged = onChanged
         self.onCommit = onCommit
         self.placeHolder = placeHolder
         _text = text
+        self.initialValue = initialValue
+        self.fontSize = fontSize
+        self.weight = weight
+        _shouldBeFirstResponder = shouldBeFirstResponder
     }
     
     func makeCoordinator() -> Coordinator {
@@ -54,13 +62,46 @@ struct OpenTextField: UIViewRepresentable {
         let view = UITextField()
         view.delegate = context.coordinator
         view.placeholder = placeHolder
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
-            view.becomeFirstResponder()
+        var uiKitWeight: UIFont.Weight = .regular
+        switch weight {
+        case .black:
+            uiKitWeight = .black
+        case .bold:
+            uiKitWeight = .bold
+        case .heavy:
+            uiKitWeight = .heavy
+        case .light:
+            uiKitWeight = .light
+        case .medium:
+            uiKitWeight = .medium
+        case .regular:
+            uiKitWeight = .regular
+        case .semibold:
+            uiKitWeight = .semibold
+        case .thin:
+            uiKitWeight = .thin
+        case .ultraLight:
+            uiKitWeight = .ultraLight
+        default:
+            uiKitWeight = .regular
         }
+        let systemFont = UIFont.systemFont(ofSize: fontSize, weight: uiKitWeight)
+        if let descriptor = systemFont.fontDescriptor.withDesign(.rounded) {
+            view.font = UIFont(descriptor: descriptor, size: fontSize)
+        } else {
+            view.font = systemFont
+        }
+        view.text = initialValue
+        view.textAlignment = .center
         return view
     }
     
     func updateUIView(_ uiView: UITextField, context: Context) {
+        if shouldBeFirstResponder && !uiView.isFirstResponder{
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
+                uiView.becomeFirstResponder()
+            }
+        }
     }
     
     class Coordinator: NSObject, UITextFieldDelegate {
@@ -89,6 +130,10 @@ struct OpenTextField: UIViewRepresentable {
         
         func textFieldDidEndEditing(_ textField: UITextField) {
             parent.onCommit?()
+        }
+        
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            parent.shouldBeFirstResponder
         }
     }
 }

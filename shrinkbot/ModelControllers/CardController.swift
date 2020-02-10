@@ -86,6 +86,12 @@ class CardController: ObservableObject {
         refreshActiveCard()
     }
     
+    func renameCard(_ card: Card, name: String) {
+        card.name = name
+        CoreDataManager.saveToPersistentStore()
+        refreshActiveCard()
+    }
+    
     func deleteActiveCard(completion: ((Bool) -> Void)?) {
         guard let card = activeCard else { completion?(false) ; return }
         CoreDataStack.context.delete(card)
