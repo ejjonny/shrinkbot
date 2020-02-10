@@ -71,6 +71,7 @@ class CardController: ObservableObject {
     }
     
     // MARK: - Card control
+    @discardableResult
     func createCard(named name: String) -> Card {
         let card = Card(name: name)
         self.setActive(card: card)
@@ -91,6 +92,12 @@ class CardController: ObservableObject {
         CoreDataManager.saveToPersistentStore()
         refreshActiveCard()
         completion?(true)
+    }
+    
+    func deleteCard(_ card: Card) {
+        CoreDataStack.context.delete(card)
+        CoreDataManager.saveToPersistentStore()
+        refreshActiveCard()
     }
     
     func setActive(card: Card) {

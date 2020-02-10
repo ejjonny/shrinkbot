@@ -59,7 +59,7 @@ struct InsightSegment<Source>: View where Source: InsightSource {
             if insightsTapped && insights.isEmpty {
                 Text("No insights yet.. keep recording data or try again")
                     .defaultFont(12)
-                    .foregroundColor(Color("Standard"))
+                    .foregroundColor(Color("Highlight"))
                 Spacer(minLength: spacing)
             }
             Button(action: {

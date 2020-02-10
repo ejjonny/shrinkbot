@@ -20,4 +20,12 @@ extension Card {
         self.uuid = uuid
         self.startDate = startDate
     }
+    
+    var factors: [FactorType] {
+        if let factors = factorTypes {
+            return factors.map { $0 as! FactorType }
+        } else {
+            return []
+        }
+    }
 }

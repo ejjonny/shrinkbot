@@ -33,3 +33,68 @@ extension Animation {
             .speed(3)
     }
 }
+
+struct OpenTextField: UIViewRepresentable {
+    @Binding var text: String
+    var onChanged: ((String) -> ())?
+    var onCommit: (() -> ())?
+    var placeHolder: String
+    
+    init(_ placeHolder: String, text: Binding<String>, onChanged: ((String) -> ())? = nil, onCommit: (() -> ())? = nil) {
+        self.onChanged = onChanged
+        self.onCommit = onCommit
+        self.placeHolder = placeHolder
+        _text = text
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    func makeUIView(context: Context) -> UITextField {
+        let view = UITextField()
+        view.delegate = context.coordinator
+        view.placeholder = placeHolder
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
+            view.becomeFirstResponder()
+        }
+        return view
+    }
+    
+    func updateUIView(_ uiView: UITextField, context: Context) {
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: OpenTextField
+        init(_ parent: OpenTextField) {
+            self.parent = parent
+        }
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            if let nextField = textField.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+                nextField.becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+            }
+            return false
+        }
+        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            guard textField.text != nil,
+                let range = Range(range, in: textField.text!)
+                else { assertionFailure() ; return false }
+            var text = textField.text!
+            text.replaceSubrange(range, with: string)
+            parent.text = text
+            parent.onChanged?(text)
+            return true
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            parent.onCommit?()
+        }
+    }
+}
+
+extension View {
+    func open(_ mod: @escaping (UITextField) -> (UITextField)) -> some View {
+        return EmptyView()
+    }
+}
