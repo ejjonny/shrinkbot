@@ -71,7 +71,7 @@ struct EntryButton: View {
                 VStack {
                     ZStack {
                         if self.expanded {
-                            Text(self.hovering ? "now let go" : "drag up")
+                            Text(self.hovering ? "let go" : "drag up")
                                 .defaultFont(14, weight: .medium)
                                 .animation(nil)
                                 .opacity(self.animating ? 0.7 : 0.3)

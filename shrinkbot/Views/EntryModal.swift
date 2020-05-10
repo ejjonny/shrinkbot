@@ -78,7 +78,7 @@ struct EntryModal: View {
                                 .foregroundColor(Color("LowContrast"))
                                 .shadow(color: Color.black.opacity(0.1), radius: 5, y: 5)
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(self.selectedIndexes.contains(index) ? Color.black : Color("Standard"), style: StrokeStyle(lineWidth: self.selectedIndexes.contains(index) ? 8 : 3))
+                                .stroke(self.selectedIndexes.contains(index) ? Color("Highlight") : Color("Standard"), style: StrokeStyle(lineWidth: self.selectedIndexes.contains(index) ? 8 : 3))
                             Text(self.factorTypes[index].name!)
                                 .defaultFont(12)
                         }

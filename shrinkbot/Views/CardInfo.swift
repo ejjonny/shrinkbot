@@ -28,8 +28,8 @@ struct CardInfo: View {
         let binding = Binding(get: {
             self.pickerInt
         }) { newValue in
-            self.pickerInt = newValue
             self.detailPopup = nil // Clear the detail popup on the graph
+            self.pickerInt = newValue
         }
         return VStack(spacing: spacing) {
             HStack(spacing: 0) {
@@ -74,7 +74,7 @@ struct CardInfo: View {
             GraphView(stats: cardController.entriesWith(graphViewStyle: graphOptionSelection), detailPopup: $detailPopup)
                 .frame(height: 250)
                 .animation(.shrinkbotSpring())
-                .drawingGroup()
+//                .drawingGroup()
         }
         .sheet(isPresented: $modalPresenting) {
             if self.modal == .card {
