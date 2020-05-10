@@ -185,18 +185,24 @@ class CardController: ObservableObject {
             if let date = group.first?.date {
                 name = dateFormat(date)()
             }
-            var markTypes = [FactorType]()
+            var markTypes = Set<FactorType>()
+            var markCounts = [FactorType: Int]()
             group.forEach {
                 let marksArray = $0.factorMarks?.array as! [FactorMark]
                 for mark in marksArray {
-                    guard let type = mark.type,
-                        !markTypes.contains(type) else { continue }
-                    markTypes.append(type)
+                    guard let type = mark.type else {
+                        continue
+                    }
+                    if markTypes.insert(type).inserted {
+                        markCounts[type] = 1
+                    } else {
+                        markCounts[type] = markCounts[type]! + 1
+                    }
                 }
             }
             // This filters out entries saved with only a factor & no rating so that data isn't skewed.
             let ratings = group.map { $0.rating }
-            let stat = EntryStats(name: name, ratingCount: group.count, averageRating: ratings.average, factorTypes: markTypes)
+            let stat = EntryStats(name: name, ratingCount: group.count, averageRating: ratings.average, factorTypes: Array(markTypes), factorTypeCounts: markCounts)
             stats.append(stat)
         }
         return stats
@@ -221,7 +227,7 @@ class CardController: ObservableObject {
             case .year:
                 break
             }
-            stats.append(EntryStats(name: name, ratingCount: group.count, averageRating: ratings.average, factorTypes: []))
+            stats.append(EntryStats(name: name, ratingCount: group.count, averageRating: ratings.average, factorTypes: [], factorTypeCounts: [:]))
         }
         return stats.reversed()
     }

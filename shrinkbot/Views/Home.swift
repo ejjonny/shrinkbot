@@ -15,7 +15,7 @@ struct Home: View {
     @ObservedObject var cardController: CardController
     @State var insightsState: InsightsState = .hidden
     @State var buttonExpanded: Bool = false
-    @State var detailPopup: Int?
+    @ObservedObject var graphState = GraphState()
     enum InsightsState {
         case hidden
         case loading
@@ -27,12 +27,12 @@ struct Home: View {
             self.buttonExpanded
         }) { newValue in
             self.buttonExpanded = newValue
-            self.detailPopup = nil
+            self.graphState.detailPopup = nil
         }
         return VStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: spacing) {
-                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, detailPopup: $detailPopup, cardController: CardController.shared, spacing: spacing)
+                    CardInfo(pickerInt: GraphRangeOptions.allCases.firstIndex(of: .today)!, cardController: CardController.shared, graphState: graphState, spacing: spacing)
                     InsightSegment(insightGenerator: InsightGenerator(), spacing: spacing)
                 }
                 .padding()

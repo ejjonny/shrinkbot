@@ -13,12 +13,14 @@ class EntryStats {
     let ratingCount: Int
     let averageRating: Double
     let factorTypes: [FactorType]
+    let factorTypeCounts: [FactorType: Int]
     
-    init(name: String, ratingCount: Int, averageRating: Double, factorTypes: [FactorType]) {
+    init(name: String, ratingCount: Int, averageRating: Double, factorTypes: [FactorType], factorTypeCounts: [FactorType: Int]) {
         self.name = name
         self.ratingCount = ratingCount
         self.averageRating = averageRating
         self.factorTypes = factorTypes
+        self.factorTypeCounts = factorTypeCounts
     }
 }
 

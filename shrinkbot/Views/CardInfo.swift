@@ -10,8 +10,8 @@ import SwiftUI
 
 struct CardInfo: View {
     @State var pickerInt: Int
-    @Binding var detailPopup: Int?
     @ObservedObject var cardController: CardController
+    @ObservedObject var graphState: GraphState
     @State var modalPresenting = false
     @State var modal: Modal = .card
     enum Modal {
@@ -28,7 +28,7 @@ struct CardInfo: View {
         let binding = Binding(get: {
             self.pickerInt
         }) { newValue in
-            self.detailPopup = nil // Clear the detail popup on the graph
+            self.graphState.detailPopup = nil // Clear the detail popup on the graph
             self.pickerInt = newValue
         }
         return VStack(spacing: spacing) {
@@ -71,10 +71,9 @@ struct CardInfo: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .zIndex(1)
-            GraphView(stats: cardController.entriesWith(graphViewStyle: graphOptionSelection), detailPopup: $detailPopup)
-                .frame(height: 250)
+            GraphView(stats: cardController.entriesWith(graphViewStyle: graphOptionSelection), graphState: graphState)
+                .frame(height: 300)
                 .animation(.shrinkbotSpring())
-//                .drawingGroup()
         }
         .sheet(isPresented: $modalPresenting) {
             if self.modal == .card {
