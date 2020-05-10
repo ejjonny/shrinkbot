@@ -31,63 +31,71 @@ struct EntryModal: View {
 //            return Color.clear
 //        }
 //    }
+    var titleString: String {
+        switch selection {
+        case .realGood:
+            return "Really Good"
+        case .good:
+            return "Pretty Good"
+        case .meh:
+            return "Fine"
+        case .bad:
+            return "Not Great"
+        case .realBad:
+            return "Really Bad"
+        case .none:
+            return "This isn't supposed to show up"
+        }
+    }
     var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(Color("Standard"))
-                .frame(height: 20)
-            Text("Add factors to your journal entry")
+        VStack(spacing: 0) {
+            ModalHandle()
+            HStack {
+            Text("Add factors to your journal entry that might have made a difference")
                 .defaultFont(25)
-                .frame(height: 70, alignment: .center)
-            ZStack {
-                ScrollView([.vertical], showsIndicators: false) {
-                    ForEach(factorTypes.indices, id: \.self) { index in
-                        Button(action: {
-                            if self.selectedIndexes.contains(index) {
-                                let removalIndex = self.selectedIndexes.firstIndex(of: index)!
-                                self.selectedIndexes.remove(at: removalIndex)
-                            } else {
-                                self.selectedIndexes.append(index)
-                            }
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color("Standard"))
-                                    .shadow(color: Color.black.opacity(0.2), radius: 10, y: 10)
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(lineWidth: self.selectedIndexes.contains(index) ? 8 : 0)
-                                Text(self.factorTypes[index].name!)
-                                    .defaultFont(12)
-                            }
-                            .frame(height: 100)
-                            .padding()
+                .padding()
+                Spacer()
+            }
+            HStack {
+                Text(titleString)
+                    .defaultFont(15)
+                    .padding([.leading, .trailing, .bottom])
+                Spacer()
+            }
+            Divider()
+            ScrollView([.vertical], showsIndicators: false) {
+                ForEach(factorTypes.indices, id: \.self) { index in
+                    Button(action: {
+                        if self.selectedIndexes.contains(index) {
+                            let removalIndex = self.selectedIndexes.firstIndex(of: index)!
+                            self.selectedIndexes.remove(at: removalIndex)
+                        } else {
+                            self.selectedIndexes.append(index)
                         }
-                        .buttonStyle(BubbleButton())
+                    }) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color("LowContrast"))
+                                .shadow(color: Color.black.opacity(0.1), radius: 5, y: 5)
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(self.selectedIndexes.contains(index) ? Color.black : Color("Standard"), style: StrokeStyle(lineWidth: self.selectedIndexes.contains(index) ? 8 : 3))
+                            Text(self.factorTypes[index].name!)
+                                .defaultFont(12)
+                        }
+                        .frame(height: 60)
+                        .padding([.leading, .trailing, .top], 8)
                     }
+                    .buttonStyle(BubbleButton())
                 }
             }
             Spacer()
-            Button(action: {
+            DoneButton {
                 CardController.shared.createEntry(ofRating: Double(self.selection!.rawValue), types: self.selectedIndexes.map { self.factorTypes[$0] })
                 self.selection = nil
                 self.expanded = false
                 self.xOffset = 0
                 self.presentation.wrappedValue.dismiss()
-            }) {
-                ZStack {
-                    Circle()
-                        .foregroundColor(Color("LowContrast"))
-                    Circle()
-                        .stroke(Color("Standard"), lineWidth: 8)
-                    Image(systemName: "checkmark")
-                        .resizable()
-                        .scaledToFit()
-                        .accentColor(Color("Standard"))
-                        .defaultFont(10, weight: .heavy)
-                        .padding(35)
-                }
             }
-            .buttonStyle(BubbleButton())
             .frame(width: 100, height: 100)
             .padding()
             .padding([.bottom], 30)

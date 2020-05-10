@@ -11,6 +11,7 @@ import SwiftUI
 struct EntryButton: View {
     @Binding var expanded: Bool
     @State var xOffset: CGFloat = 0
+    @State var animating = false
     @State var selection: Rating? {
         didSet {
             if selection != oldValue {
@@ -67,13 +68,26 @@ struct EntryButton: View {
             }
             .frame(width: self.controlWidth, height: self.controlHeight + bloat - (expanded ? 40 : 0))
             GeometryReader { proxy in
-                ZStack {
-                    Circle()
-                        .foregroundColor(Color("Background"))
-                        .opacity(self.expanded ? 1 : 0)
-                    Image(self.selection?.imageString() ?? "GI")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                VStack {
+                    ZStack {
+                        if self.expanded {
+                            Text(self.hovering ? "now let go" : "drag up")
+                                .defaultFont(14, weight: .medium)
+                                .animation(nil)
+                                .opacity(self.animating ? 0.7 : 0.3)
+                                .animation(Animation.default.speed(0.25).repeatForever(autoreverses: true))
+                            .offset(y: -80)
+                                .onAppear {
+                                    self.animating.toggle()
+                            }
+                        }
+                        Circle()
+                            .foregroundColor(Color("Background"))
+                            .opacity(self.expanded ? 1 : 0)
+                        Image(self.selection?.imageString() ?? "GI")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
                 }
                 .offset(x: self.xOffset, y: self.expanded ? -self.controlHeight - self.bloat - 10 : 0)
                 .gesture(

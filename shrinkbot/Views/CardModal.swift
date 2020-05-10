@@ -14,32 +14,32 @@ struct CardModal: View {
     @State var inserting = false
     @State var newCardName = String()
     var body: some View {
-        NavigationView {
-            ScrollView([.vertical], showsIndicators: false) {
-                VStack(spacing: 0) {
-                    CardList(cardController: cardController)
-                    if inserting {
-                        InsertItem(cardController: cardController, newCardName: $newCardName, inserting: $inserting)
-                    }
-                    if !inserting {
-                        Button(action: {
-                            withAnimation(.default) {
-                                self.inserting = true
-                            }
-                        }) {
-                            Image(systemName: "plus.circle")
-                                .resizable()
-                                .defaultFont()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(Color("Standard"))
+        ScrollView([.vertical], showsIndicators: false) {
+            ModalHandle()
+            VStack(spacing: 0) {
+                CardList(cardController: cardController)
+                if inserting {
+                    InsertItem(cardController: cardController, newCardName: $newCardName, inserting: $inserting)
+                }
+                if !inserting {
+                    Button(action: {
+                        withAnimation(.default) {
+                            self.inserting = true
                         }
-                        .transition(.opacity)
+                    }) {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .defaultFont()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(Color("Standard"))
                     }
+                    .transition(.opacity)
                 }
             }
-            .navigationBarTitle("My cards")
         }
+        .background(Color("Background"))
+        .edgesIgnoringSafeArea([.bottom])
     }
 }
 

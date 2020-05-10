@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EAF4D0A246787B3001FA975 /* ModalHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D09246787B3001FA975 /* ModalHandle.swift */; };
+		4EAF4D0C246787DE001FA975 /* NotificationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D0B246787DE001FA975 /* NotificationModal.swift */; };
+		4EAF4D0E24678A66001FA975 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D0D24678A66001FA975 /* DoneButton.swift */; };
 		CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */; };
 		CA0AF38323ED35B8000F8C15 /* VerticalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */; };
 		CA0AF38523ED3990000F8C15 /* InsightStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38423ED3990000F8C15 /* InsightStack.swift */; };
@@ -46,6 +49,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4EAF4D09246787B3001FA975 /* ModalHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHandle.swift; sourceTree = "<group>"; };
+		4EAF4D0B246787DE001FA975 /* NotificationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModal.swift; sourceTree = "<group>"; };
+		4EAF4D0D24678A66001FA975 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
 		CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLines.swift; sourceTree = "<group>"; };
 		CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLines.swift; sourceTree = "<group>"; };
 		CA0AF38423ED3990000F8C15 /* InsightStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightStack.swift; sourceTree = "<group>"; };
@@ -207,13 +213,16 @@
 			children = (
 				CA0AF38823EF2F8F000F8C15 /* UIConstants.swift */,
 				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				4EAF4D0D24678A66001FA975 /* DoneButton.swift */,
 				CADEF95A23E7D463008CCDCC /* InsightSegment.swift */,
 				CA0AF38423ED3990000F8C15 /* InsightStack.swift */,
 				CAF8D0D6234D851800A5D2AA /* CardInfo.swift */,
 				CA0AF38623EDBB71000F8C15 /* CardModal.swift */,
+				4EAF4D0B246787DE001FA975 /* NotificationModal.swift */,
 				CAE09AF823458CF500370FAD /* EntryModal.swift */,
 				CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */,
 				CAE09AF62345873100370FAD /* EntryButton.swift */,
+				4EAF4D09246787B3001FA975 /* ModalHandle.swift */,
 				CAAD4A982349DA7D00CA72B1 /* GraphView.swift */,
 				CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */,
 				CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */,
@@ -305,6 +314,7 @@
 				CAE09B1023458ED300370FAD /* FactorType+Convenience.swift in Sources */,
 				CAE09B44234592EE00370FAD /* ReminderController.swift in Sources */,
 				CABDBDCE2341A34500090FB3 /* Home.swift in Sources */,
+				4EAF4D0A246787B3001FA975 /* ModalHandle.swift in Sources */,
 				CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */,
 				CAE09AF923458CF500370FAD /* EntryModal.swift in Sources */,
 				CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */,
@@ -319,6 +329,8 @@
 				CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */,
 				CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */,
 				CAE09B45234592EE00370FAD /* CardController.swift in Sources */,
+				4EAF4D0C246787DE001FA975 /* NotificationModal.swift in Sources */,
+				4EAF4D0E24678A66001FA975 /* DoneButton.swift in Sources */,
 				CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */,
 				CAE09B3E234591A700370FAD /* shrinkbot.xcdatamodeld in Sources */,
 				CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */,
