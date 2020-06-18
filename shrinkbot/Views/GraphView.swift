@@ -11,6 +11,7 @@ class GraphState: ObservableObject {
     @Published var detailPopup: Int?
     @Published var factorSelected: Int?
     let colors = FactorTypeColors().colors.shuffled()
+    var factorTypes = [FactorType]()
 }
 
 struct GraphView: View {
