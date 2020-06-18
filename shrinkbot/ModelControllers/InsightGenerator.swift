@@ -71,17 +71,22 @@ class InsightGenerator: InsightSource {
         let sorted = sortIntoGroupsByFactorType(entries: entries)
         for type in sorted.keys {
             guard let entriesWithType = sorted[type] else { continue }
-            let averageInterval = averageIntervalBetween(entries: entriesWithType)
-            let calendarInterval = closestCalendarIntervalWith(input: averageInterval)
-            guard let calendarIntervalSafe = calendarInterval else { continue }
-            let groups = CardController.shared.getEntries(entries: entries, groupedBy: calendarIntervalSafe)
+//            let averageInterval = averageIntervalBetween(entries: entriesWithType)
+//            let calendarInterval = closestCalendarIntervalWith(input: averageInterval)
+//            guard let calendarIntervalSafe = calendarInterval else { continue }
+            let groups = CardController.shared.getEntries(entries: entries, groupedBy: .day)
             let analyses = intervalAnalysesWith(groups: groups, type: type)
             var recordedPerInterval = [Int]()
             for analysis in analyses {
                 recordedPerInterval.append(analysis.factorRecorded)
             }
-            let roundedRecorded = ((recordedPerInterval.average * 10).rounded()) / 10
-            insights.append(Insight(title: "\(type.name ?? "Name") Frequency", description: "On average you record \(type.name ?? "Name") \(roundedRecorded) times every \(calendarIntervalSafe.rawValue)", score: Double.random(in: 0...80)))
+            let sorted = entriesWithType.sorted { first, second -> Bool in
+                first.date! < second.date!
+            }.first?.date ?? Date()
+            let dayCount = Calendar.current.dateComponents([.day], from: sorted, to: Date()).day ?? 0
+            let zeroDays = (0..<dayCount).map { _ in 0 }
+            let roundedRecorded = ((recordedPerInterval + zeroDays).average)
+            insights.append(Insight(title: "\(type.name ?? "Name") Frequency", description: "On average you record \(type.name ?? "Name") \(String(format:"%.2f", roundedRecorded)) times every day", score: Double.random(in: 0...80)))
         }
         return insights
     }
@@ -175,7 +180,7 @@ class InsightGenerator: InsightSource {
             var factorRecorded = 0
             for entry in group {
                 let marks = CardController.shared.getMarks(entry: entry)
-                marks.forEach{
+                marks.forEach {
                     if $0.type == type {
                         factorRecorded += 1
                         reliability += 1

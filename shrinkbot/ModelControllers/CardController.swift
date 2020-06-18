@@ -298,39 +298,34 @@ class CardController: ObservableObject {
         }
         return entryArray.filter {
             guard let date = $0.date else { print("An entry was missing a date") ; return false }
-            return period.contains(date)
+            return period.contains(date) || interval == .all
         }
     }
     
     /// For getting entries grouped by a calendar period of time.
     /// Ex. With .day you would recieve entries on April 25th, 26th, 27th etc. regardless of current date / time
     func getEntries(entries: [Entry] = [], groupedBy dateStyle: EntryDateStyles) -> [[Entry]] {
-        var input = entries
-        if entries.isEmpty {
-            guard let cardEntries = activeCard?.entries else { return [[]] }
-            input = cardEntries.map{ $0 as! Entry}
-        }
         let calendar = Calendar.current
         let grouped: [DateComponents:[Entry]]
         switch dateStyle {
         case .all:
-            grouped = Dictionary(grouping: input, by: {
+            grouped = Dictionary(grouping: entries, by: {
                 calendar.dateComponents([.second,.minute,.day,.month,.year], from: $0.date!)
             })
         case .day:
-            grouped = Dictionary(grouping: input, by: {
+            grouped = Dictionary(grouping: entries, by: {
                 calendar.dateComponents([.day, .month, .year], from: $0.date!)
             })
         case .week:
-            grouped = Dictionary(grouping: input, by: {
+            grouped = Dictionary(grouping: entries, by: {
                 calendar.dateComponents([.weekOfYear], from: $0.date!)
             })
         case .month:
-            grouped = Dictionary(grouping: input, by: {
+            grouped = Dictionary(grouping: entries, by: {
                 calendar.dateComponents([.month, .year], from: $0.date!)
             })
         case .year:
-            grouped = Dictionary(grouping: input, by: {
+            grouped = Dictionary(grouping: entries, by: {
                 calendar.dateComponents([.year], from: $0.date!)
             })
         }

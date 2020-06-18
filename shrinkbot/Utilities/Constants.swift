@@ -24,8 +24,8 @@ enum EntryDateStyles: String {
 
 enum GraphRangeOptions: String, CaseIterable {
     case allTime = "All"
-    case thisMonth = "Month"
     case thisYear = "Year"
+    case thisMonth = "Month"
     case thisWeek = "Week"
     case today = "Today"
 }
