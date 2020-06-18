@@ -13,6 +13,14 @@ struct CardModal: View {
     @ObservedObject var cardController: CardController
     @State var createState: CreateState = .notEditing
     @State var editedText = ""
+    @State var deleteAlert = false
+    @State var deleting: DeleteType = .card
+    @State var selectedFactorType: FactorType?
+    enum DeleteType {
+        case card
+        case factorType
+        case notDeleting
+    }
     enum CreateState {
         case newCard
         case newFactorType
@@ -66,21 +74,76 @@ struct CardModal: View {
                     ForEach(cardController.cards.indices, id: \.self) { index in
                         Section(header:
                             HStack {
-                                Text(self.cardController.cards[index].name ?? "")
-                                Spacer()
-                                Button(action: {
-                                    print("del")
-                                }) {
-                                    Image(systemName: "trash")
+                                HStack(alignment: .firstTextBaseline) {
+                                    Text(self.cardController.cards[index].name ?? "")
+                                        .defaultFont(30, weight: .bold)
+                                        .opacity(self.cardController.cards[index].isActive ? 1 : 0.5)
+                                    Spacer()
+                                        .frame(width: 10)
+                                    if !self.cardController.cards[index].isActive {
+                                        Text("\(self.cardController.cards[index].entries?.array.count ?? 0) entries")
+                                            .defaultFont()
+                                            .opacity(self.cardController.cards[index].isActive ? 1 : 0.5)
+                                            .transition(AnyTransition.move(edge: .leading).combined(with: .opacity))
+                                    }
                                 }
+                                Spacer()
+                                if self.cardController.cards[index].isActive {
+                                    Button(action: {
+                                        self.deleting = .card
+                                        self.deleteAlert = true
+                                    }) {
+                                        Image(systemName: "trash")
+                                    }
+                                    .padding()
+                                    .foregroundColor(Color("Highlight"))
+                                    .background(
+                                        Circle()
+                                            .foregroundColor(Color("Standard"))
+                                    )
+                                        .padding([.top, .bottom])
+                                        .transition(AnyTransition.move(edge: .trailing).combined(with: .opacity))
+                                }
+                                Button(action: {
+                                    withAnimation(Animation.shrinkbotSpring()) {
+                                        self.cardController.setActive(card: self.cardController.cards[index])
+                                    }
+                                }) {
+                                    Image(systemName: self.cardController.cards[index].isActive ? "checkmark.circle.fill" : "checkmark.circle")
+                                }
+                                .padding()
                                 .foregroundColor(Color("Highlight"))
+                                .background(
+                                    Circle()
+                                        .foregroundColor(Color(self.cardController.cards[index].isActive ? "Standard" : "LowContrast"))
+                                )
+                                    .padding([.top, .bottom])
                             }
                         ) {
                             if self.cardController.cards[index].isActive {
                                 ForEach(self.cardController.activeCardFactorTypes.indices, id: \.self) { index in
-                                    Text(self.cardController.activeCardFactorTypes[index].name ?? "")
-                                        .defaultFont()
+                                    HStack {
+                                        Text(self.cardController.activeCardFactorTypes[index].name ?? "")
+                                            .defaultFont()
+                                        Spacer()
+                                        Button(action: {
+                                            self.deleting = .factorType
+                                            self.deleteAlert = true
+                                            self.selectedFactorType = self.cardController.activeCardFactorTypes[index]
+                                        }) {
+                                            Image(systemName: "trash")
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())
+                                        .padding()
+                                        .foregroundColor(Color("Highlight"))
+                                        .background(
+                                            Circle()
+                                                .foregroundColor(Color("Standard"))
+                                        )
+                                            .padding([.top, .bottom])
+                                    }
                                 }
+                                .transition(.opacity)
                             }
                         }
                     }
@@ -136,6 +199,19 @@ struct CardModal: View {
                 }
                 .transition(AnyTransition.move(edge: .bottom).combined(with: .opacity))
                 .zIndex(10)
+            }
+        }
+        .alert(isPresented: $deleteAlert) { () -> Alert in
+            if deleting == .card {
+                return Alert(title: Text("Are you sure you want to delete \(self.cardController.activeCard?.name ?? "this card")?"), message: Text("All of your entries will be deleted. You can't undo this."), primaryButton: .destructive(Text("Delete"), action: {
+                    self.cardController.deleteActiveCard(completion: nil)
+                }), secondaryButton: .cancel())
+            } else {
+                return Alert(title: Text("Are you sure you want to delete \(selectedFactorType?.name ?? "this factor")?"), message: Text("This factor will be removed from every recorded entry. You can't undo this."), primaryButton: .destructive(Text("Delete"), action: {
+                    if let type = self.selectedFactorType {
+                        self.cardController.deleteFactorType(type)
+                    }
+                }), secondaryButton: .cancel())
             }
         }
     }
