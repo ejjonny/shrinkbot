@@ -70,11 +70,12 @@ struct EntryButton: View {
             GeometryReader { proxy in
                 VStack {
                     ZStack {
-                        if self.expanded {
+                        if self.expanded &&
+                            Defaults.timesUsedEntryButton < 3 {
                             Text(self.hovering ? "let go" : "drag up")
                                 .defaultFont(14, weight: .medium)
                                 .animation(nil)
-                                .opacity(self.animating ? 0.7 : 0.3)
+                                .opacity(self.animating ? 0.7 : 0.1)
                                 .animation(Animation.default.speed(0.25).repeatForever(autoreverses: true))
                             .offset(y: -80)
                                 .onAppear {
@@ -126,6 +127,9 @@ struct EntryButton: View {
                         } else if self.selection != nil {
                             self.bump(.rigid)
                             self.modalPresenting = true
+                            if Defaults.timesUsedEntryButton < 3 {
+                                Defaults.timesUsedEntryButton += 1
+                            }
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                                 self.bump(.medium)
                             }

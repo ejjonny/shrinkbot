@@ -143,7 +143,6 @@ struct CardModal: View {
                                             .padding([.top, .bottom])
                                     }
                                 }
-                                .transition(.opacity)
                             }
                         }
                     }
@@ -203,7 +202,7 @@ struct CardModal: View {
         }
         .alert(isPresented: $deleteAlert) { () -> Alert in
             if deleting == .card {
-                return Alert(title: Text("Are you sure you want to delete \(self.cardController.activeCard?.name ?? "this card")?"), message: Text("All of your entries will be deleted. You can't undo this."), primaryButton: .destructive(Text("Delete"), action: {
+                return Alert(title: Text("Are you sure you want to delete \(self.cardController.activeCard?.name ?? "this journal")?"), message: Text("All of your entries will be deleted. You can't undo this."), primaryButton: .destructive(Text("Delete"), action: {
                     self.cardController.deleteActiveCard(completion: nil)
                 }), secondaryButton: .cancel())
             } else {

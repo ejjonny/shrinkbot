@@ -17,6 +17,12 @@ struct InsightSegment<Source>: View where Source: InsightSource {
                     self.buttonState = .waitingForRefresh
                 }
             }
+            if buttonState == .waitingForRefresh,
+                insights.isEmpty {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 7) {
+                    self.buttonState = .waitingForPress
+                }
+            }
         }
     }
     @State var animate = false
@@ -57,7 +63,7 @@ struct InsightSegment<Source>: View where Source: InsightSource {
                 Spacer(minLength: spacing)
             }
             if insightsTapped && insights.isEmpty {
-                Text("No insights yet.. keep recording data or try again")
+                Text("No insights for this journal yet.. keep recording data or try again")
                     .defaultFont(12)
                     .foregroundColor(Color("Highlight"))
                 Spacer(minLength: spacing)

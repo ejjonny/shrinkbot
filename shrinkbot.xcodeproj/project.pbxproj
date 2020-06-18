@@ -10,6 +10,7 @@
 		4EAF4D0A246787B3001FA975 /* ModalHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D09246787B3001FA975 /* ModalHandle.swift */; };
 		4EAF4D0C246787DE001FA975 /* NotificationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D0B246787DE001FA975 /* NotificationModal.swift */; };
 		4EAF4D0E24678A66001FA975 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D0D24678A66001FA975 /* DoneButton.swift */; };
+		4EB8832F249C282300F680E2 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB8832E249C282300F680E2 /* UserDefault.swift */; };
 		CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */; };
 		CA0AF38323ED35B8000F8C15 /* VerticalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */; };
 		CA0AF38523ED3990000F8C15 /* InsightStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38423ED3990000F8C15 /* InsightStack.swift */; };
@@ -52,6 +53,7 @@
 		4EAF4D09246787B3001FA975 /* ModalHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHandle.swift; sourceTree = "<group>"; };
 		4EAF4D0B246787DE001FA975 /* NotificationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModal.swift; sourceTree = "<group>"; };
 		4EAF4D0D24678A66001FA975 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
+		4EB8832E249C282300F680E2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLines.swift; sourceTree = "<group>"; };
 		CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLines.swift; sourceTree = "<group>"; };
 		CA0AF38423ED3990000F8C15 /* InsightStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightStack.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */,
+				4EB8832E249C282300F680E2 /* UserDefault.swift */,
 				CAE09B3F234592AD00370FAD /* CoreDataStack.swift */,
 				CABDBDC92341A34500090FB3 /* AppDelegate.swift */,
 				CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */,
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB8832F249C282300F680E2 /* UserDefault.swift in Sources */,
 				CAE09AF72345873100370FAD /* EntryButton.swift in Sources */,
 				CAE09B1223458ED300370FAD /* Reminder+Convenience.swift in Sources */,
 				CAE09B46234592EE00370FAD /* InsightGenerator.swift in Sources */,

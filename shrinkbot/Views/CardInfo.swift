@@ -37,7 +37,7 @@ struct CardInfo: View {
                     self.modal = .card
                     self.modalPresenting = true
                 }) {
-                    Text(cardController.activeCard?.name ?? "Card Name")
+                    Text(cardController.activeCard?.name ?? "Journal Name")
                         .defaultFont(25)
                         .foregroundColor(Color("Highlight"))
                         .padding()
