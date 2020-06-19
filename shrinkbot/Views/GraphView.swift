@@ -23,10 +23,13 @@ struct GraphView: View {
     }
     let range = 5
     var factorTypes: [FactorType] {
-        stats.lazy
+        var typeSet = Set<FactorType>()
+        return stats.lazy
             .flatMap(\.factorTypes)
-            .reduce(into: Set<FactorType>()) { current, next in
-                current.insert(next)
+            .reduce(into: [FactorType]()) { current, next in
+                if typeSet.insert(next).inserted {
+                    current.append(next)
+                }
         }
         .map { $0 }
         .sorted { $0.name! < $1.name! }
