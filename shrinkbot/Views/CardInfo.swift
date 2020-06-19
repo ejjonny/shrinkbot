@@ -71,7 +71,7 @@ struct CardInfo: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .zIndex(1)
-            GraphView(stats: cardController.entriesWith(graphViewStyle: graphOptionSelection), graphState: graphState)
+            GraphView(graphOption: graphOptionSelection, graphState: graphState, cardController: cardController)
                 .frame(height: 300)
                 .animation(.shrinkbotSpring())
         }

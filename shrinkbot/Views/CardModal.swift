@@ -24,7 +24,26 @@ struct CardModal: View {
     enum CreateState {
         case newCard
         case newFactorType
+        case editCard
+        case editFactorType
         case notEditing
+    }
+    var editPopup: Bool {
+        createState != .notEditing
+    }
+    var popupText: String {
+        switch createState {
+        case .newCard:
+            return "Create a Card"
+        case .newFactorType:
+            return "Add a Factor"
+        case .editCard:
+            return "Rename Card"
+        case .editFactorType:
+            return "Rename Factor"
+        case .notEditing:
+            return ""
+        }
     }
     var body: some View {
         ZStack {
@@ -39,7 +58,7 @@ struct CardModal: View {
                         }
                     }) {
                         HStack(alignment: .center) {
-                            Text("Create a Card")
+                            Text("Create a journal")
                                 .defaultFont()
                             Image(systemName: "square.and.pencil")
                         }
@@ -99,10 +118,26 @@ struct CardModal: View {
                                     .foregroundColor(Color("Highlight"))
                                     .background(
                                         Circle()
-                                            .foregroundColor(Color("Standard"))
+                                            .foregroundColor(Color(self.cardController.cards[index].isActive ? "Standard" : "LowContrast"))
                                     )
                                         .padding([.top, .bottom])
                                         .transition(AnyTransition.move(edge: .trailing).combined(with: .opacity))
+                                    Button(action: {
+                                        self.editedText = ""
+                                        withAnimation(.default) {
+                                            self.createState = .editCard
+                                        }
+                                    }) {
+                                        Image(systemName: "pencil")
+                                    }
+                                    .buttonStyle(BorderlessButtonStyle())
+                                    .padding()
+                                    .foregroundColor(Color("Highlight"))
+                                    .background(
+                                        Circle()
+                                            .foregroundColor(Color(self.cardController.cards[index].isActive ? "Standard" : "LowContrast"))
+                                    )
+                                        .padding([.top, .bottom])
                                 }
                                 Button(action: {
                                     withAnimation(Animation.shrinkbotSpring()) {
@@ -141,6 +176,23 @@ struct CardModal: View {
                                                 .foregroundColor(Color("Standard"))
                                         )
                                             .padding([.top, .bottom])
+                                        Button(action: {
+                                            self.editedText = ""
+                                            self.selectedFactorType = self.cardController.activeCardFactorTypes[index]
+                                            withAnimation(.default) {
+                                                self.createState = .editFactorType
+                                            }
+                                        }) {
+                                            Image(systemName: "pencil")
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())
+                                        .padding()
+                                        .foregroundColor(Color("Highlight"))
+                                        .background(
+                                            Circle()
+                                                .foregroundColor(Color("Standard"))
+                                        )
+                                            .padding([.top, .bottom])
                                     }
                                 }
                             }
@@ -148,18 +200,35 @@ struct CardModal: View {
                     }
                 }
             }
-            .blur(radius: createState == .newCard || createState == .newFactorType ? 20 : 0)
-            .disabled(createState == .newCard || createState == .newFactorType)
-            if self.createState == .newCard || self.createState == .newFactorType {
+            .blur(radius: self.editPopup ? 20 : 0)
+            .disabled(self.editPopup)
+            if self.editPopup {
                 VStack {
                     Spacer()
                     VStack {
-                        Text(self.createState == .newCard ? "New Card" : "New Factor")
+                        Text(self.popupText)
                             .defaultFont(20, weight: .semibold)
                         TextField("Enter a name...", text: $editedText)
                             .frame(width: 125)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Spacer()
+                            .frame(height: 20)
                         HStack {
+                            Button(action: {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+                                withAnimation(.default) {
+                                    self.createState = .notEditing
+                                }
+                            }) {
+                                Text("Cancel")
+                                    .defaultFont()
+                                    .foregroundColor(Color("Highlight"))
+                                    .padding()
+                                    .background(
+                                        Capsule()
+                                            .foregroundColor(Color("Standard"))
+                                )
+                            }
                             Button(action: {
                                 if !self.editedText.isEmpty {
                                     switch self.createState {
@@ -167,6 +236,12 @@ struct CardModal: View {
                                         self.cardController.createCard(named: self.editedText)
                                     case .newFactorType:
                                         self.cardController.createFactorType(withName: self.editedText)
+                                    case .editFactorType:
+                                        if let typeSelected = self.selectedFactorType {
+                                            self.cardController.renameFactorType(typeSelected, withName: self.editedText)
+                                        }
+                                    case .editCard:
+                                        self.cardController.renameActiveCard(withName: self.editedText)
                                     case .notEditing:
                                         break
                                     }
@@ -187,8 +262,8 @@ struct CardModal: View {
                             }
                         }
                     }
-                    .frame(width: 150, height: 125)
-                    .padding()
+                    .frame(width: 200, height: 125)
+                    .padding(30)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundColor(Color("LowContrast"))

@@ -11,28 +11,33 @@ class GraphState: ObservableObject {
     @Published var detailPopup: Int?
     @Published var factorSelected: Int?
     let colors = FactorTypeColors().colors.shuffled()
-    var factorTypes = [FactorType]()
 }
 
 struct GraphView: View {
-    var stats: [EntryStats]
-    var factorTypes: [FactorType]
+    @ObservedObject var graphState: GraphState
+    var stats: [EntryStats] {
+        self.cardController.entriesWith(graphViewStyle: graphOption)
+    }
     var data: [Double] {
         stats.map { $0.averageRating }
     }
     let range = 5
-    @ObservedObject var graphState: GraphState
-    
-    init(stats: [EntryStats], graphState: GraphState) {
-        self.stats = stats
-        self.factorTypes = stats.lazy
+    var factorTypes: [FactorType] {
+        stats.lazy
             .flatMap(\.factorTypes)
             .reduce(into: Set<FactorType>()) { current, next in
                 current.insert(next)
-            }
+        }
         .map { $0 }
         .sorted { $0.name! < $1.name! }
+    }
+    let graphOption: GraphRangeOptions
+    @ObservedObject var cardController: CardController
+    
+    init(graphOption: GraphRangeOptions, graphState: GraphState, cardController: CardController) {
+        self.graphOption = graphOption
         self.graphState = graphState
+        self.cardController = cardController
     }
     
     var body: some View {

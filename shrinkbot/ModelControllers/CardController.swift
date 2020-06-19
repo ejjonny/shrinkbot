@@ -17,9 +17,21 @@ class CardController: ObservableObject {
     // Singleton
     static var shared = CardController()
     
-    @Published var cards: [Card] = []
-    @Published var activeCardEntries: [Entry] = []
-    @Published var activeCard: Card?
+    var cards: [Card] = [] {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    var activeCardEntries: [Entry] = [] {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    var activeCard: Card? {
+        didSet {
+            objectWillChange.send()
+        }
+    }
     
     func refreshActiveCard() {
         activeCard = findActiveCard()
@@ -127,16 +139,19 @@ class CardController: ObservableObject {
             print("ERROR: Tried to save a factor when all factors on active card were full. Factor was not saved.")
         }
         CoreDataManager.saveToPersistentStore()
+        objectWillChange.send()
     }
     
     func renameFactorType(_ factorType: FactorType, withName name: String) {
         factorType.name = name
         CoreDataManager.saveToPersistentStore()
+        objectWillChange.send()
     }
     
     func deleteFactorType(_ factorType: FactorType) {
         CoreDataStack.context.delete(factorType)
         CoreDataManager.saveToPersistentStore()
+        objectWillChange.send()
     }
     
     func createFactorMark(ofType type: FactorType, onEntry entry: Entry) {
