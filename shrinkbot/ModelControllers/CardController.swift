@@ -132,12 +132,8 @@ class CardController: ObservableObject {
     
     // MARK: - FactorType control
     func createFactorType(withName name: String, onCard card: Card? = nil) {
-        guard let card = activeCard, let factorTypeCount = card.factorTypes?.count else { print("Card does not have any factor types."); return }
-        if factorTypeCount < 6 {
-            FactorType(name: name, card: card)
-        } else {
-            print("ERROR: Tried to save a factor when all factors on active card were full. Factor was not saved.")
-        }
+        guard let card = activeCard else { print("Card does not have any factor types."); return }
+        FactorType(name: name, card: card)
         CoreDataManager.saveToPersistentStore()
         objectWillChange.send()
     }

@@ -36,6 +36,7 @@ struct InsightStack: View {
                         Divider()
                         Text(self.insights[index].description)
                             .defaultFont(15, weight: .regular)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     }
                     .padding()
                 }

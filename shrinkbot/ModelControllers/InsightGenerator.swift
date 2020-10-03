@@ -14,17 +14,6 @@ protocol InsightSource {
     func generate(completion: (([Insight]) -> ())?)
 }
 
-class MockInsightGenerator: InsightSource {
-    func generate(completion: (([Insight]) -> ())?) {
-        let insights: [Insight] = [
-//            Insight(title: "This will be", description: "insightful and awesome", score: 20),
-//            Insight(title: "No", description: "noddle for u", score: 50),
-//            Insight(title: "go go go go", description: "gadget", score: 20)
-        ]
-        completion?(insights)
-    }
-}
-
 class InsightGenerator: InsightSource {
     
     static let shared = InsightGenerator()
@@ -39,9 +28,17 @@ class InsightGenerator: InsightSource {
             tmpContext.parent = CoreDataStack.context
             let tmpEntries = mainEntries.map{ tmpContext.object(with: $0.objectID) as! Entry }
             var insights = [Insight]()
-            insights.append(contentsOf: self.generateOverallAnalysis(entries: tmpEntries))
-            insights.append(contentsOf: self.averageFactorFrequency(entries: tmpEntries))
-            insights.append(contentsOf: self.getMainProgress(entries: tmpEntries))
+            let overallAnalysis = self.generateOverallAnalysis(entries: tmpEntries)
+            let averageFrequency = self.averageFactorFrequency(entries: tmpEntries)
+            let mainProgress = self.getMainProgress(entries: tmpEntries)
+            func firstTwo(_ insights: [Insight]) -> [Insight] {
+                let shuffled = insights.shuffled()
+                guard insights.count > 2 else { return shuffled }
+                return shuffled.dropLast(insights.count - 2)
+            }
+            insights.append(contentsOf: firstTwo(overallAnalysis))
+            insights.append(contentsOf: firstTwo(averageFrequency))
+            insights.append(contentsOf: firstTwo(mainProgress))
             let filteredByScore = insights.filter{ $0.score > 20 }
             DispatchQueue.main.async {
                 completion?(filteredByScore)
@@ -59,7 +56,14 @@ class InsightGenerator: InsightSource {
         }
         let percentDifference = percentChange(from: monthRatings.average, to: weekRatings.average)
         let rounded = ((percentDifference * 10).rounded()) / 10
-        var description = "This week \(cardName) is \(abs(rounded))% \(rounded > 0 ? "better" : "worse") than this month's average"
+        let monthAverage = monthRatings.average
+        let weekAverage = weekRatings.average
+        let difference = abs(weekAverage - monthAverage)
+        var significant = false
+        if difference > 1 {
+            significant = true
+        }
+        var description = "This week \(cardName) is \(significant ? "significantly" : "a bit") \(rounded > 0 ? "better" : "worse") than this month's average"
         if abs(percentDifference) == 0 {
             description = "Looks like this week is about the same as the rest of the month for \(cardName)"
         }
@@ -71,9 +75,6 @@ class InsightGenerator: InsightSource {
         let sorted = sortIntoGroupsByFactorType(entries: entries)
         for type in sorted.keys {
             guard let entriesWithType = sorted[type] else { continue }
-//            let averageInterval = averageIntervalBetween(entries: entriesWithType)
-//            let calendarInterval = closestCalendarIntervalWith(input: averageInterval)
-//            guard let calendarIntervalSafe = calendarInterval else { continue }
             let groups = CardController.shared.getEntries(entries: entries, groupedBy: .day)
             let analyses = intervalAnalysesWith(groups: groups, type: type)
             var recordedPerInterval = [Int]()
@@ -86,7 +87,12 @@ class InsightGenerator: InsightSource {
             let dayCount = Calendar.current.dateComponents([.day], from: sorted, to: Date()).day ?? 0
             let zeroDays = (0..<dayCount).map { _ in 0 }
             let roundedRecorded = ((recordedPerInterval + zeroDays).average)
-            insights.append(Insight(title: "\(type.name ?? "Name") Frequency", description: "On average you record \(type.name ?? "Name") \(String(format:"%.2f", roundedRecorded)) times every day", score: Double.random(in: 0...80)))
+            let randomScore = Double.random(in: 0...80)
+            if roundedRecorded < 1 {
+                insights.append(Insight(title: "\(type.name ?? "Name") Frequency", description: "On average you record \(type.name ?? "Name") about once every \(String(format: "%.f", (1 / roundedRecorded))) days", score: randomScore))
+            } else {
+                insights.append(Insight(title: "\(type.name ?? "Name") Frequency", description: "On average you record \(type.name ?? "Name") \(String(format:"%.2f", roundedRecorded)) times every day", score: randomScore))
+            }
         }
         return insights
     }
@@ -113,10 +119,15 @@ class InsightGenerator: InsightSource {
             for analysis in analysisGroup {
                 analysis.factorRecorded > 0 ? withFactor.append(analysis.avgRating) : withoutFactor.append(analysis.avgRating)
             }
-            let percentage = withoutFactor.average / withFactor.average - 1
-            let percentageValue = (percentage * 100).rounded()
-            
-            insights.append(Insight(title: "\(type.name ?? "Name") / \(cardName) Correlation", description: "\(cardName) is \(abs(percentageValue))% \(percentageValue > 0 ? "better" : "worse") without \(type.name ?? "Name")", score: analysisGroup.map{ $0.score }.reduce(0, +)))
+            let withAverage = withFactor.average
+            let withoutAverage = withoutFactor.average
+            let difference = abs(withAverage - withoutAverage)
+            let betterWith = withAverage > withoutAverage
+            var significant = false
+            if difference > 1 {
+                significant = true
+            }
+            insights.append(Insight(title: "\(type.name ?? "Name") / \(cardName) Correlation", description: "\(cardName) is \(significant ? "a bit" : "significantly") \(betterWith ? "better" : "worse") with \(type.name ?? "Name")", score: analysisGroup.map{ $0.score }.reduce(0, +)))
         }
         return insights
     }

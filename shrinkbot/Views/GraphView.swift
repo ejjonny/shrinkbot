@@ -15,9 +15,7 @@ class GraphState: ObservableObject {
 
 struct GraphView: View {
     @ObservedObject var graphState: GraphState
-    var stats: [EntryStats] {
-        self.cardController.entriesWith(graphViewStyle: graphOption)
-    }
+    var stats: [EntryStats]
     var data: [Double] {
         stats.map { $0.averageRating }
     }
@@ -35,12 +33,11 @@ struct GraphView: View {
         .sorted { $0.name! < $1.name! }
     }
     let graphOption: GraphRangeOptions
-    @ObservedObject var cardController: CardController
     
-    init(graphOption: GraphRangeOptions, graphState: GraphState, cardController: CardController) {
+    init(graphOption: GraphRangeOptions, graphState: GraphState, stats: [EntryStats]) {
         self.graphOption = graphOption
         self.graphState = graphState
-        self.cardController = cardController
+        self.stats = stats
     }
     
     var body: some View {
