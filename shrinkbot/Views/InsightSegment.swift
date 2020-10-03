@@ -13,6 +13,10 @@ struct InsightSegment<Source>: View where Source: InsightSource {
     @State var buttonState: ButtonState = .waitingForPress {
         didSet {
             if buttonState == .done {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.07) {
+                    UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                     self.buttonState = .waitingForRefresh
                 }
