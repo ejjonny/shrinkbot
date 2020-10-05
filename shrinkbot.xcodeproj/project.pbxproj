@@ -7,16 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EAF4D0A246787B3001FA975 /* ModalHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D09246787B3001FA975 /* ModalHandle.swift */; };
+		4EAF4D0C246787DE001FA975 /* NotificationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D0B246787DE001FA975 /* NotificationModal.swift */; };
+		4EAF4D0E24678A66001FA975 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF4D0D24678A66001FA975 /* DoneButton.swift */; };
+		4EB8832F249C282300F680E2 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB8832E249C282300F680E2 /* UserDefault.swift */; };
+		CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */; };
+		CA0AF38323ED35B8000F8C15 /* VerticalLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */; };
+		CA0AF38523ED3990000F8C15 /* InsightStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38423ED3990000F8C15 /* InsightStack.swift */; };
+		CA0AF38723EDBB71000F8C15 /* CardModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38623EDBB71000F8C15 /* CardModal.swift */; };
+		CA0AF38923EF2F8F000F8C15 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0AF38823EF2F8F000F8C15 /* UIConstants.swift */; };
+		CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD4A982349DA7D00CA72B1 /* GraphView.swift */; };
+		CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */; };
 		CABDBDCA2341A34500090FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDC92341A34500090FB3 /* AppDelegate.swift */; };
 		CABDBDCC2341A34500090FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */; };
 		CABDBDCE2341A34500090FB3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDBDCD2341A34500090FB3 /* Home.swift */; };
 		CABDBDD02341A34800090FB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABDBDCF2341A34800090FB3 /* Assets.xcassets */; };
 		CABDBDD32341A34800090FB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABDBDD22341A34800090FB3 /* Preview Assets.xcassets */; };
 		CABDBDD62341A34800090FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */; };
+		CADEF95B23E7D463008CCDCC /* InsightSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADEF95A23E7D463008CCDCC /* InsightSegment.swift */; };
 		CAE09AF523442C8000370FAD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF323442C1B00370FAD /* Extensions.swift */; };
+		CAE09AF72345873100370FAD /* EntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF62345873100370FAD /* EntryButton.swift */; };
+		CAE09AF923458CF500370FAD /* EntryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AF823458CF500370FAD /* EntryModal.swift */; };
+		CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AFB23458E4300370FAD /* NotificationManager.swift */; };
+		CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AFA23458E4300370FAD /* CoreDataManager.swift */; };
+		CAE09B0423458EB400370FAD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0223458EB400370FAD /* Constants.swift */; };
+		CAE09B0523458EB400370FAD /* CollectionAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0323458EB400370FAD /* CollectionAverage.swift */; };
+		CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0C23458ED200370FAD /* Entry+Convenience.swift */; };
+		CAE09B1023458ED300370FAD /* FactorType+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0923458ED100370FAD /* FactorType+Convenience.swift */; };
+		CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0A23458ED200370FAD /* Card+Convenience.swift */; };
+		CAE09B1223458ED300370FAD /* Reminder+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0B23458ED200370FAD /* Reminder+Convenience.swift */; };
+		CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0D23458ED200370FAD /* FactorMark+Convenience.swift */; };
+		CAE09B1423458ED300370FAD /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0723458ED100370FAD /* Insight.swift */; };
+		CAE09B1523458ED300370FAD /* CardConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0823458ED100370FAD /* CardConfiguration.swift */; };
+		CAE09B1623458ED300370FAD /* EntryStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B0E23458ED200370FAD /* EntryStats.swift */; };
+		CAE09B3E234591A700370FAD /* shrinkbot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */; };
+		CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B3F234592AD00370FAD /* CoreDataStack.swift */; };
+		CAE09B44234592EE00370FAD /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B42234592EE00370FAD /* ReminderController.swift */; };
+		CAE09B45234592EE00370FAD /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B41234592ED00370FAD /* CardController.swift */; };
+		CAE09B46234592EE00370FAD /* InsightGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B43234592EE00370FAD /* InsightGenerator.swift */; };
+		CAE09B492345936700370FAD /* DateAsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE09B482345936700370FAD /* DateAsString.swift */; };
+		CAF8D0D7234D851800A5D2AA /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF8D0D6234D851800A5D2AA /* CardInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4EAF4D09246787B3001FA975 /* ModalHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalHandle.swift; sourceTree = "<group>"; };
+		4EAF4D0B246787DE001FA975 /* NotificationModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModal.swift; sourceTree = "<group>"; };
+		4EAF4D0D24678A66001FA975 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
+		4EB8832E249C282300F680E2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLines.swift; sourceTree = "<group>"; };
+		CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLines.swift; sourceTree = "<group>"; };
+		CA0AF38423ED3990000F8C15 /* InsightStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightStack.swift; sourceTree = "<group>"; };
+		CA0AF38623EDBB71000F8C15 /* CardModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModal.swift; sourceTree = "<group>"; };
+		CA0AF38823EF2F8F000F8C15 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		CAAD4A982349DA7D00CA72B1 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleButton.swift; sourceTree = "<group>"; };
 		CABDBDC62341A34500090FB3 /* shrinkbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shrinkbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABDBDC92341A34500090FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +69,29 @@
 		CABDBDD22341A34800090FB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CABDBDD52341A34800090FB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CABDBDD72341A34800090FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CADEF95A23E7D463008CCDCC /* InsightSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightSegment.swift; sourceTree = "<group>"; };
 		CAE09AF323442C1B00370FAD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CAE09AF62345873100370FAD /* EntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryButton.swift; sourceTree = "<group>"; };
+		CAE09AF823458CF500370FAD /* EntryModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModal.swift; sourceTree = "<group>"; };
+		CAE09AFA23458E4300370FAD /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CAE09AFB23458E4300370FAD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		CAE09B0023458E6B00370FAD /* ifeelgood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ifeelgood.xcdatamodel; sourceTree = "<group>"; };
+		CAE09B0223458EB400370FAD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CAE09B0323458EB400370FAD /* CollectionAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAverage.swift; sourceTree = "<group>"; };
+		CAE09B0723458ED100370FAD /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
+		CAE09B0823458ED100370FAD /* CardConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardConfiguration.swift; sourceTree = "<group>"; };
+		CAE09B0923458ED100370FAD /* FactorType+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FactorType+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0A23458ED200370FAD /* Card+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0B23458ED200370FAD /* Reminder+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0C23458ED200370FAD /* Entry+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0D23458ED200370FAD /* FactorMark+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FactorMark+Convenience.swift"; sourceTree = "<group>"; };
+		CAE09B0E23458ED200370FAD /* EntryStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryStats.swift; sourceTree = "<group>"; };
+		CAE09B3F234592AD00370FAD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CAE09B41234592ED00370FAD /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		CAE09B42234592EE00370FAD /* ReminderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
+		CAE09B43234592EE00370FAD /* InsightGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightGenerator.swift; sourceTree = "<group>"; };
+		CAE09B482345936700370FAD /* DateAsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAsString.swift; sourceTree = "<group>"; };
+		CAF8D0D6234D851800A5D2AA /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +124,13 @@
 		CABDBDC82341A34500090FB3 /* shrinkbot */ = {
 			isa = PBXGroup;
 			children = (
-				CABDBDC92341A34500090FB3 /* AppDelegate.swift */,
-				CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */,
-				CABDBDCD2341A34500090FB3 /* Home.swift */,
-				CABDBDCF2341A34800090FB3 /* Assets.xcassets */,
-				CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */,
-				CABDBDD72341A34800090FB3 /* Info.plist */,
-				CAE09AF223442C1B00370FAD /* Utilities */,
+				CAE09B0123458E8600370FAD /* AppResources */,
+				CAE09B4A234593A900370FAD /* Views */,
+				CAE09B47234592F300370FAD /* ModelControllers */,
+				CAE09AFE23458E4A00370FAD /* Managers */,
+				CAE09B0623458EBB00370FAD /* Utilities */,
+				CAE09B1723458ED800370FAD /* Models */,
+				CAE09AF223442C1B00370FAD /* ViewUtilities */,
 				CABDBDD12341A34800090FB3 /* Preview Content */,
 			);
 			path = shrinkbot;
@@ -78,12 +144,93 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		CAE09AF223442C1B00370FAD /* Utilities */ = {
+		CAE09AF223442C1B00370FAD /* ViewUtilities */ = {
 			isa = PBXGroup;
 			children = (
 				CAE09AF323442C1B00370FAD /* Extensions.swift */,
 			);
+			path = ViewUtilities;
+			sourceTree = "<group>";
+		};
+		CAE09AFE23458E4A00370FAD /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09AFA23458E4300370FAD /* CoreDataManager.swift */,
+				CAE09AFB23458E4300370FAD /* NotificationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CAE09B0123458E8600370FAD /* AppResources */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */,
+				4EB8832E249C282300F680E2 /* UserDefault.swift */,
+				CAE09B3F234592AD00370FAD /* CoreDataStack.swift */,
+				CABDBDC92341A34500090FB3 /* AppDelegate.swift */,
+				CABDBDCB2341A34500090FB3 /* SceneDelegate.swift */,
+				CABDBDCF2341A34800090FB3 /* Assets.xcassets */,
+				CABDBDD42341A34800090FB3 /* LaunchScreen.storyboard */,
+				CABDBDD72341A34800090FB3 /* Info.plist */,
+			);
+			path = AppResources;
+			sourceTree = "<group>";
+		};
+		CAE09B0623458EBB00370FAD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09B0223458EB400370FAD /* Constants.swift */,
+				CAE09B0323458EB400370FAD /* CollectionAverage.swift */,
+				CAE09B482345936700370FAD /* DateAsString.swift */,
+			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CAE09B1723458ED800370FAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09B0A23458ED200370FAD /* Card+Convenience.swift */,
+				CAE09B0C23458ED200370FAD /* Entry+Convenience.swift */,
+				CAE09B0923458ED100370FAD /* FactorType+Convenience.swift */,
+				CAE09B0D23458ED200370FAD /* FactorMark+Convenience.swift */,
+				CAE09B0B23458ED200370FAD /* Reminder+Convenience.swift */,
+				CAE09B0E23458ED200370FAD /* EntryStats.swift */,
+				CAE09B0723458ED100370FAD /* Insight.swift */,
+				CAE09B0823458ED100370FAD /* CardConfiguration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAE09B47234592F300370FAD /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CAE09B41234592ED00370FAD /* CardController.swift */,
+				CAE09B43234592EE00370FAD /* InsightGenerator.swift */,
+				CAE09B42234592EE00370FAD /* ReminderController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		CAE09B4A234593A900370FAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA0AF38823EF2F8F000F8C15 /* UIConstants.swift */,
+				CABDBDCD2341A34500090FB3 /* Home.swift */,
+				4EAF4D0D24678A66001FA975 /* DoneButton.swift */,
+				CADEF95A23E7D463008CCDCC /* InsightSegment.swift */,
+				CA0AF38423ED3990000F8C15 /* InsightStack.swift */,
+				CAF8D0D6234D851800A5D2AA /* CardInfo.swift */,
+				CA0AF38623EDBB71000F8C15 /* CardModal.swift */,
+				4EAF4D0B246787DE001FA975 /* NotificationModal.swift */,
+				CAE09AF823458CF500370FAD /* EntryModal.swift */,
+				CAB0A6AD2349CFEE00535357 /* BubbleButton.swift */,
+				CAE09AF62345873100370FAD /* EntryButton.swift */,
+				4EAF4D09246787B3001FA975 /* ModalHandle.swift */,
+				CAAD4A982349DA7D00CA72B1 /* GraphView.swift */,
+				CA0AF38223ED35B8000F8C15 /* VerticalLines.swift */,
+				CA0AF38023ED34CB000F8C15 /* HorizontalLines.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,10 +304,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB8832F249C282300F680E2 /* UserDefault.swift in Sources */,
+				CAE09AF72345873100370FAD /* EntryButton.swift in Sources */,
+				CAE09B1223458ED300370FAD /* Reminder+Convenience.swift in Sources */,
+				CAE09B46234592EE00370FAD /* InsightGenerator.swift in Sources */,
+				CADEF95B23E7D463008CCDCC /* InsightSegment.swift in Sources */,
 				CABDBDCA2341A34500090FB3 /* AppDelegate.swift in Sources */,
 				CABDBDCC2341A34500090FB3 /* SceneDelegate.swift in Sources */,
+				CAE09B1523458ED300370FAD /* CardConfiguration.swift in Sources */,
+				CAE09B0523458EB400370FAD /* CollectionAverage.swift in Sources */,
+				CA0AF38923EF2F8F000F8C15 /* UIConstants.swift in Sources */,
+				CAE09B1623458ED300370FAD /* EntryStats.swift in Sources */,
+				CAE09B1023458ED300370FAD /* FactorType+Convenience.swift in Sources */,
+				CAE09B44234592EE00370FAD /* ReminderController.swift in Sources */,
 				CABDBDCE2341A34500090FB3 /* Home.swift in Sources */,
+				4EAF4D0A246787B3001FA975 /* ModalHandle.swift in Sources */,
+				CAE09AFC23458E4400370FAD /* NotificationManager.swift in Sources */,
+				CAE09AF923458CF500370FAD /* EntryModal.swift in Sources */,
+				CAE09B1123458ED300370FAD /* Card+Convenience.swift in Sources */,
+				CAB0A6AE2349CFEE00535357 /* BubbleButton.swift in Sources */,
+				CAE09B492345936700370FAD /* DateAsString.swift in Sources */,
+				CA0AF38723EDBB71000F8C15 /* CardModal.swift in Sources */,
+				CAE09AFD23458E4400370FAD /* CoreDataManager.swift in Sources */,
+				CAE09B1323458ED300370FAD /* FactorMark+Convenience.swift in Sources */,
+				CAF8D0D7234D851800A5D2AA /* CardInfo.swift in Sources */,
 				CAE09AF523442C8000370FAD /* Extensions.swift in Sources */,
+				CA0AF38323ED35B8000F8C15 /* VerticalLines.swift in Sources */,
+				CAAD4A9A2349DA7D00CA72B1 /* GraphView.swift in Sources */,
+				CAE09B40234592AD00370FAD /* CoreDataStack.swift in Sources */,
+				CAE09B45234592EE00370FAD /* CardController.swift in Sources */,
+				4EAF4D0C246787DE001FA975 /* NotificationModal.swift in Sources */,
+				4EAF4D0E24678A66001FA975 /* DoneButton.swift in Sources */,
+				CAE09B0F23458ED300370FAD /* Entry+Convenience.swift in Sources */,
+				CAE09B3E234591A700370FAD /* shrinkbot.xcdatamodeld in Sources */,
+				CA0AF38123ED34CB000F8C15 /* HorizontalLines.swift in Sources */,
+				CA0AF38523ED3990000F8C15 /* InsightStack.swift in Sources */,
+				CAE09B1423458ED300370FAD /* Insight.swift in Sources */,
+				CAE09B0423458EB400370FAD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +477,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"shrinkbot/Preview Content\"";
 				DEVELOPMENT_TEAM = J8Z88H6B28;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = shrinkbot/Info.plist;
+				INFOPLIST_FILE = shrinkbot/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethansapps.shrinkbot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -317,14 +499,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"shrinkbot/Preview Content\"";
 				DEVELOPMENT_TEAM = J8Z88H6B28;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = shrinkbot/Info.plist;
+				INFOPLIST_FILE = shrinkbot/AppResources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ethansapps.shrinkbot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -354,6 +538,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CAE09AFF23458E6B00370FAD /* shrinkbot.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CAE09B0023458E6B00370FAD /* ifeelgood.xcdatamodel */,
+			);
+			currentVersion = CAE09B0023458E6B00370FAD /* ifeelgood.xcdatamodel */;
+			path = shrinkbot.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CABDBDBE2341A34500090FB3 /* Project object */;
 }
