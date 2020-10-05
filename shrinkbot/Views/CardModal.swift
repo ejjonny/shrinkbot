@@ -34,11 +34,11 @@ struct CardModal: View {
     var popupText: String {
         switch createState {
         case .newCard:
-            return "Create a Card"
+            return "Create a Journal"
         case .newFactorType:
             return "Add a Factor"
         case .editCard:
-            return "Rename Card"
+            return "Rename Journal"
         case .editFactorType:
             return "Rename Factor"
         case .notEditing:

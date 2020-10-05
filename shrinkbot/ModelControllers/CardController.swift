@@ -72,7 +72,7 @@ class CardController: ObservableObject {
         // Last resort
         print("Error: active card computed property should cover all cases.")
         let card = createCard(named: "My Mood")
-        createFactorType(withName: "Slept Bad", onCard: card)
+        createFactorType(withName: "Bad Sleep", onCard: card)
         createFactorType(withName: "Exercised", onCard: card)
         return card
     }
